@@ -1,11 +1,11 @@
 /**
  * App.jsx
- * Root component. Renders the layout and the AffirmationBox.
+ * Root component. Renders the affirmation box and moon phase tracker.
  */
 
 import AffirmationBox from './components/AffirmationBox';
+import MoonPhase from './components/MoonPhase';
 
-// ─── Keyframe animations injected into the document ──────────────────────────
 const GLOBAL_STYLES = `
   @keyframes shimmer {
     0%   { transform: translateX(-100%); }
@@ -28,7 +28,6 @@ const GLOBAL_STYLES = `
     50%       { transform: scale(1.06); opacity: 0.85; }
   }
 
-  /* Hover effect for the closed card */
   [role="button"]:hover {
     transform: translateY(-3px) scale(1.01) !important;
     box-shadow: 0 16px 50px rgba(100, 80, 50, 0.20) !important;
@@ -38,7 +37,6 @@ const GLOBAL_STYLES = `
     transform: scale(0.98) !important;
   }
 
-  /* Retry button hover */
   button:hover {
     background: #f5ede0 !important;
   }
@@ -47,30 +45,72 @@ const GLOBAL_STYLES = `
 export default function App() {
   return (
     <>
-      {/* Inject global keyframes */}
       <style>{GLOBAL_STYLES}</style>
 
-      {/* Main layout */}
-      <main>
+      <main style={styles.main}>
+        {/* Daily affirmation box */}
         <AffirmationBox />
+
+        {/* Section divider */}
+        <div style={styles.sectionDivider}>
+          <div style={styles.dividerLine} />
+          <span style={styles.dividerText}>🌿 lunar energy</span>
+          <div style={styles.dividerLine} />
+        </div>
+
+        {/* Moon phase tracker */}
+        <MoonPhase />
       </main>
 
-      {/* Subtle footer */}
-      <footer style={{
-        position: 'fixed',
-        bottom: '16px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        fontFamily: "'Inter', sans-serif",
-        fontSize: '11px',
-        color: '#c8baa8',
-        letterSpacing: '0.06em',
-        textAlign: 'center',
-        pointerEvents: 'none',
-        whiteSpace: 'nowrap',
-      }}>
-        Daily Box Affirmations ✦ One message, one day
+      <footer style={styles.footer}>
+        Women's Space ✦ Daily Box Affirmations
       </footer>
     </>
   );
 }
+
+const styles = {
+  main: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '40px 16px 80px',
+    gap: '32px',
+    width: '100%',
+    maxWidth: '480px',
+    margin: '0 auto',
+  },
+  sectionDivider: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px',
+    width: '100%',
+    maxWidth: '420px',
+  },
+  dividerLine: {
+    flex: 1,
+    height: '1px',
+    backgroundColor: '#d8ccc0',
+  },
+  dividerText: {
+    fontFamily: "'Inter', sans-serif",
+    fontSize: '11px',
+    color: '#b0a090',
+    letterSpacing: '0.1em',
+    textTransform: 'uppercase',
+    whiteSpace: 'nowrap',
+  },
+  footer: {
+    position: 'fixed',
+    bottom: '16px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    fontFamily: "'Inter', sans-serif",
+    fontSize: '11px',
+    color: '#c8baa8',
+    letterSpacing: '0.06em',
+    textAlign: 'center',
+    pointerEvents: 'none',
+    whiteSpace: 'nowrap',
+  },
+};
