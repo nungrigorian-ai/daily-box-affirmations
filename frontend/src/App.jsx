@@ -74,10 +74,10 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: '40px 16px 80px',
-    gap: '32px',
+    padding: '24px 16px 60px',
+    gap: '16px',
     width: '100%',
-    maxWidth: '480px',
+    maxWidth: '460px',
     margin: '0 auto',
   },
   sectionDivider: {
