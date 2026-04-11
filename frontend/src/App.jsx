@@ -11,6 +11,8 @@ import AffirmationBox from './components/AffirmationBox';
 import MoonPhase      from './components/MoonPhase';
 import Astrology      from './components/Astrology';
 import BirthdaySetup  from './components/BirthdaySetup';
+import CycleTracker   from './components/CycleTracker';
+import CycleSetup     from './components/CycleSetup';
 
 const GLOBAL_STYLES = `
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -50,22 +52,34 @@ const CARDS = [
   { id: 'affirmation', label: 'Message', icon: '🎁' },
   { id: 'moon',        label: 'Moon',    icon: '🌙' },
   { id: 'stars',       label: 'Stars',   icon: '✨' },
+  { id: 'cycle',       label: 'Cycle',   icon: '🌸' },
 ];
 
 export default function App() {
   const [birthday, setBirthday]     = useState(null);
+  const [cycleData, setCycleData]   = useState(null);
   const [loaded, setLoaded]         = useState(false);
   const [activeCard, setActiveCard] = useState(0);
   const [lang, setLang]             = useState('en'); // 'en' | 'ru'
   const touchStartX = useRef(null);
 
   useEffect(() => {
-    const savedBirthday = localStorage.getItem('dba_birthday');
-    const savedLang     = localStorage.getItem('dba_lang');
+    const savedBirthday  = localStorage.getItem('dba_birthday');
+    const savedLang      = localStorage.getItem('dba_lang');
+    const savedCycleStart  = localStorage.getItem('dba_cycle_start');
+    const savedCycleLen    = localStorage.getItem('dba_cycle_length');
+    const savedPeriodLen   = localStorage.getItem('dba_period_length');
     if (savedBirthday) {
       try { setBirthday(JSON.parse(savedBirthday)); } catch {}
     }
     if (savedLang) setLang(savedLang);
+    if (savedCycleStart && savedCycleLen) {
+      setCycleData({
+        start:     savedCycleStart,
+        cycleLen:  parseInt(savedCycleLen, 10),
+        periodLen: parseInt(savedPeriodLen || '5', 10),
+      });
+    }
     setLoaded(true);
   }, []);
 
@@ -163,6 +177,32 @@ export default function App() {
                 >
                   {lang === 'en' ? 'Change my birthday' : 'Изменить дату рождения'}
                 </button>
+              </div>
+            </div>
+
+            {/* Card 4 — Cycle */}
+            <div style={styles.card}>
+              <div style={styles.cardScroll}>
+                <div style={styles.cardHeader}>
+                  <p style={styles.cardTitle}>{lang === 'en' ? 'Your Cycle' : 'Твой цикл'}</p>
+                  <p style={styles.cardSubtitle}>{lang === 'en' ? 'Phase, energy & guidance' : 'Фаза, энергия и советы'}</p>
+                </div>
+                {cycleData
+                  ? <CycleTracker
+                      cycleData={cycleData}
+                      lang={lang}
+                      onReset={() => {
+                        localStorage.removeItem('dba_cycle_start');
+                        localStorage.removeItem('dba_cycle_length');
+                        localStorage.removeItem('dba_period_length');
+                        setCycleData(null);
+                      }}
+                    />
+                  : <CycleSetup
+                      lang={lang}
+                      onSave={data => setCycleData(data)}
+                    />
+                }
               </div>
             </div>
           </div>
