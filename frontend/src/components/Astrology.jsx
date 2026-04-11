@@ -155,112 +155,112 @@ const DAILY_GUIDANCE = {
 
 const LUCKY = {
   Aries:       [
-    { color: 'Red', crystal: 'Carnelian', number: 9 },
-    { color: 'Orange', crystal: 'Red Jasper', number: 1 },
-    { color: 'Coral', crystal: 'Bloodstone', number: 7 },
-    { color: 'Scarlet', crystal: 'Ruby', number: 3 },
-    { color: 'Gold', crystal: 'Tiger\'s Eye', number: 5 },
-    { color: 'Crimson', crystal: 'Garnet', number: 6 },
-    { color: 'Amber', crystal: 'Citrine', number: 4 },
+    { color: 'Red', mood: 'Bold & Fearless', number: 9 },
+    { color: 'Orange', mood: 'Energised & Ready', number: 1 },
+    { color: 'Coral', mood: 'Passionate & Alive', number: 7 },
+    { color: 'Scarlet', mood: 'Fierce & Confident', number: 3 },
+    { color: 'Gold', mood: 'Powerful & Radiant', number: 5 },
+    { color: 'Crimson', mood: 'Driven & Unstoppable', number: 6 },
+    { color: 'Amber', mood: 'Warm & Courageous', number: 4 },
   ],
   Taurus:      [
-    { color: 'Green', crystal: 'Rose Quartz', number: 6 },
-    { color: 'Pink', crystal: 'Malachite', number: 2 },
-    { color: 'Ivory', crystal: 'Emerald', number: 4 },
-    { color: 'Sage', crystal: 'Jade', number: 8 },
-    { color: 'Blush', crystal: 'Rhodonite', number: 3 },
-    { color: 'Forest', crystal: 'Green Aventurine', number: 7 },
-    { color: 'Cream', crystal: 'Selenite', number: 5 },
+    { color: 'Green', mood: 'Grounded & Secure', number: 6 },
+    { color: 'Pink', mood: 'Soft & Loving', number: 2 },
+    { color: 'Ivory', mood: 'Calm & Centered', number: 4 },
+    { color: 'Sage', mood: 'Peaceful & Wise', number: 8 },
+    { color: 'Blush', mood: 'Gentle & Open', number: 3 },
+    { color: 'Forest', mood: 'Strong & Rooted', number: 7 },
+    { color: 'Cream', mood: 'Nourished & Content', number: 5 },
   ],
   Gemini:      [
-    { color: 'Yellow', crystal: 'Citrine', number: 5 },
-    { color: 'Sky Blue', crystal: 'Aquamarine', number: 3 },
-    { color: 'Silver', crystal: 'Clear Quartz', number: 7 },
-    { color: 'Lavender', crystal: 'Labradorite', number: 1 },
-    { color: 'White', crystal: 'Howlite', number: 9 },
-    { color: 'Turquoise', crystal: 'Blue Lace Agate', number: 2 },
-    { color: 'Mint', crystal: 'Fluorite', number: 6 },
+    { color: 'Yellow', mood: 'Curious & Bright', number: 5 },
+    { color: 'Sky Blue', mood: 'Light & Free', number: 3 },
+    { color: 'Silver', mood: 'Sharp & Witty', number: 7 },
+    { color: 'Lavender', mood: 'Playful & Inspired', number: 1 },
+    { color: 'White', mood: 'Clear & Open-minded', number: 9 },
+    { color: 'Turquoise', mood: 'Expressive & Lively', number: 2 },
+    { color: 'Mint', mood: 'Fresh & Adaptable', number: 6 },
   ],
   Cancer:      [
-    { color: 'Silver', crystal: 'Moonstone', number: 2 },
-    { color: 'White', crystal: 'Pearl', number: 7 },
-    { color: 'Sea Blue', crystal: 'Aquamarine', number: 4 },
-    { color: 'Cream', crystal: 'Selenite', number: 6 },
-    { color: 'Lavender', crystal: 'Amethyst', number: 3 },
-    { color: 'Soft Pink', crystal: 'Rose Quartz', number: 5 },
-    { color: 'Opal', crystal: 'Opalite', number: 8 },
+    { color: 'Silver', mood: 'Intuitive & Tender', number: 2 },
+    { color: 'White', mood: 'Pure & Nurturing', number: 7 },
+    { color: 'Sea Blue', mood: 'Deep & Flowing', number: 4 },
+    { color: 'Cream', mood: 'Safe & Warm', number: 6 },
+    { color: 'Lavender', mood: 'Dreamy & Gentle', number: 3 },
+    { color: 'Soft Pink', mood: 'Loving & Compassionate', number: 5 },
+    { color: 'Opal', mood: 'Mystical & Sensitive', number: 8 },
   ],
   Leo:         [
-    { color: 'Gold', crystal: 'Sunstone', number: 1 },
-    { color: 'Orange', crystal: 'Citrine', number: 5 },
-    { color: 'Royal Purple', crystal: 'Amber', number: 9 },
-    { color: 'Sunny Yellow', crystal: 'Tiger\'s Eye', number: 3 },
-    { color: 'Bright Red', crystal: 'Ruby', number: 7 },
-    { color: 'Copper', crystal: 'Pyrite', number: 4 },
-    { color: 'Ivory', crystal: 'Clear Quartz', number: 6 },
+    { color: 'Gold', mood: 'Radiant & Magnetic', number: 1 },
+    { color: 'Orange', mood: 'Joyful & Vibrant', number: 5 },
+    { color: 'Royal Purple', mood: 'Regal & Inspired', number: 9 },
+    { color: 'Sunny Yellow', mood: 'Bright & Generous', number: 3 },
+    { color: 'Bright Red', mood: 'Passionate & Bold', number: 7 },
+    { color: 'Copper', mood: 'Warm & Creative', number: 4 },
+    { color: 'Ivory', mood: 'Graceful & Luminous', number: 6 },
   ],
   Virgo:       [
-    { color: 'Sage Green', crystal: 'Amazonite', number: 6 },
-    { color: 'Navy', crystal: 'Lapis Lazuli', number: 2 },
-    { color: 'Cream', crystal: 'Moss Agate', number: 4 },
-    { color: 'Dusty Rose', crystal: 'Peach Selenite', number: 8 },
-    { color: 'Olive', crystal: 'Jade', number: 5 },
-    { color: 'Grey', crystal: 'Sodalite', number: 3 },
-    { color: 'White', crystal: 'Clear Quartz', number: 7 },
+    { color: 'Sage Green', mood: 'Mindful & Clear', number: 6 },
+    { color: 'Navy', mood: 'Focused & Precise', number: 2 },
+    { color: 'Cream', mood: 'Pure & Intentional', number: 4 },
+    { color: 'Dusty Rose', mood: 'Gentle & Caring', number: 8 },
+    { color: 'Olive', mood: 'Grounded & Practical', number: 5 },
+    { color: 'Grey', mood: 'Analytical & Calm', number: 3 },
+    { color: 'White', mood: 'Clean & Purposeful', number: 7 },
   ],
   Libra:       [
-    { color: 'Rose', crystal: 'Rose Quartz', number: 7 },
-    { color: 'Lavender', crystal: 'Lepidolite', number: 2 },
-    { color: 'Blue', crystal: 'Blue Kyanite', number: 6 },
-    { color: 'Mint', crystal: 'Green Aventurine', number: 4 },
-    { color: 'Blush', crystal: 'Kunzite', number: 9 },
-    { color: 'Ivory', crystal: 'Moonstone', number: 3 },
-    { color: 'Peach', crystal: 'Sunstone', number: 5 },
+    { color: 'Rose', mood: 'Harmonious & Loving', number: 7 },
+    { color: 'Lavender', mood: 'Balanced & Serene', number: 2 },
+    { color: 'Blue', mood: 'Fair & Thoughtful', number: 6 },
+    { color: 'Mint', mood: 'Graceful & Refreshed', number: 4 },
+    { color: 'Blush', mood: 'Romantic & Soft', number: 9 },
+    { color: 'Ivory', mood: 'Elegant & Poised', number: 3 },
+    { color: 'Peach', mood: 'Warm & Diplomatic', number: 5 },
   ],
   Scorpio:     [
-    { color: 'Deep Red', crystal: 'Obsidian', number: 8 },
-    { color: 'Black', crystal: 'Black Tourmaline', number: 4 },
-    { color: 'Burgundy', crystal: 'Garnet', number: 2 },
-    { color: 'Midnight Blue', crystal: 'Labradorite', number: 9 },
-    { color: 'Maroon', crystal: 'Red Jasper', number: 6 },
-    { color: 'Indigo', crystal: 'Amethyst', number: 3 },
-    { color: 'Charcoal', crystal: 'Smoky Quartz', number: 7 },
+    { color: 'Deep Red', mood: 'Intense & Transformative', number: 8 },
+    { color: 'Black', mood: 'Mysterious & Powerful', number: 4 },
+    { color: 'Burgundy', mood: 'Deep & Magnetic', number: 2 },
+    { color: 'Midnight Blue', mood: 'Perceptive & Soulful', number: 9 },
+    { color: 'Maroon', mood: 'Determined & Resilient', number: 6 },
+    { color: 'Indigo', mood: 'Intuitive & Profound', number: 3 },
+    { color: 'Charcoal', mood: 'Focused & Unyielding', number: 7 },
   ],
   Sagittarius: [
-    { color: 'Purple', crystal: 'Turquoise', number: 3 },
-    { color: 'Royal Blue', crystal: 'Lapis Lazuli', number: 9 },
-    { color: 'Orange', crystal: 'Sodalite', number: 5 },
-    { color: 'Violet', crystal: 'Amethyst', number: 7 },
-    { color: 'Gold', crystal: 'Citrine', number: 1 },
-    { color: 'Cobalt', crystal: 'Sapphire', number: 4 },
-    { color: 'Teal', crystal: 'Chrysocolla', number: 6 },
+    { color: 'Purple', mood: 'Expansive & Wise', number: 3 },
+    { color: 'Royal Blue', mood: 'Adventurous & Free', number: 9 },
+    { color: 'Orange', mood: 'Optimistic & Joyful', number: 5 },
+    { color: 'Violet', mood: 'Philosophical & Open', number: 7 },
+    { color: 'Gold', mood: 'Lucky & Inspired', number: 1 },
+    { color: 'Cobalt', mood: 'Truthful & Energised', number: 4 },
+    { color: 'Teal', mood: 'Curious & Alive', number: 6 },
   ],
   Capricorn:   [
-    { color: 'Forest Green', crystal: 'Onyx', number: 8 },
-    { color: 'Charcoal', crystal: 'Garnet', number: 4 },
-    { color: 'Brown', crystal: 'Tiger\'s Eye', number: 6 },
-    { color: 'Black', crystal: 'Smoky Quartz', number: 2 },
-    { color: 'Dark Green', crystal: 'Malachite', number: 9 },
-    { color: 'Navy', crystal: 'Azurite', number: 3 },
-    { color: 'Slate', crystal: 'Hematite', number: 7 },
+    { color: 'Forest Green', mood: 'Ambitious & Steady', number: 8 },
+    { color: 'Charcoal', mood: 'Disciplined & Strong', number: 4 },
+    { color: 'Brown', mood: 'Grounded & Reliable', number: 6 },
+    { color: 'Black', mood: 'Focused & Determined', number: 2 },
+    { color: 'Dark Green', mood: 'Patient & Purposeful', number: 9 },
+    { color: 'Navy', mood: 'Strategic & Wise', number: 3 },
+    { color: 'Slate', mood: 'Calm & Enduring', number: 7 },
   ],
   Aquarius:    [
-    { color: 'Electric Blue', crystal: 'Aquamarine', number: 4 },
-    { color: 'Turquoise', crystal: 'Labradorite', number: 7 },
-    { color: 'Violet', crystal: 'Amethyst', number: 11 },
-    { color: 'Silver', crystal: 'Clear Quartz', number: 2 },
-    { color: 'Indigo', crystal: 'Lapis Lazuli', number: 9 },
-    { color: 'Cyan', crystal: 'Blue Kyanite', number: 5 },
-    { color: 'White', crystal: 'Selenite', number: 3 },
+    { color: 'Electric Blue', mood: 'Innovative & Electric', number: 4 },
+    { color: 'Turquoise', mood: 'Visionary & Free', number: 7 },
+    { color: 'Violet', mood: 'Unconventional & Bright', number: 11 },
+    { color: 'Silver', mood: 'Sharp & Independent', number: 2 },
+    { color: 'Indigo', mood: 'Humanitarian & Deep', number: 9 },
+    { color: 'Cyan', mood: 'Original & Alive', number: 5 },
+    { color: 'White', mood: 'Clear & Progressive', number: 3 },
   ],
   Pisces:      [
-    { color: 'Sea Green', crystal: 'Amethyst', number: 7 },
-    { color: 'Lavender', crystal: 'Moonstone', number: 3 },
-    { color: 'Aqua', crystal: 'Aquamarine', number: 9 },
-    { color: 'Soft Blue', crystal: 'Larimar', number: 2 },
-    { color: 'Lilac', crystal: 'Fluorite', number: 6 },
-    { color: 'Pearl', crystal: 'Opalite', number: 4 },
-    { color: 'Mist', crystal: 'Selenite', number: 11 },
+    { color: 'Sea Green', mood: 'Dreamy & Compassionate', number: 7 },
+    { color: 'Lavender', mood: 'Mystical & Soft', number: 3 },
+    { color: 'Aqua', mood: 'Flowing & Intuitive', number: 9 },
+    { color: 'Soft Blue', mood: 'Gentle & Soulful', number: 2 },
+    { color: 'Lilac', mood: 'Romantic & Tender', number: 6 },
+    { color: 'Pearl', mood: 'Pure & Luminous', number: 4 },
+    { color: 'Mist', mood: 'Ethereal & Peaceful', number: 11 },
   ],
 };
 
@@ -298,9 +298,12 @@ export default function Astrology({ birthday, lang = 'en' }) {
   const swatchColor = COLOR_MAP[lucky.color] || zodiac.color;
 
   const labels = {
-    lean:     lang === 'en' ? '✅ Today, lean into'  : '✅ Сегодня, устремись к',
-    mindful:  lang === 'en' ? '🌿 Be mindful of'     : '🌿 Будь внимательна к',
-    luckyColor: lang === 'en' ? '✨ Your lucky color today' : '✨ Твой счастливый цвет сегодня',
+    lean:       lang === 'en' ? '✅ Today, lean into'        : '✅ Сегодня, устремись к',
+    mindful:    lang === 'en' ? '🌿 Be mindful of'           : '🌿 Будь внимательна к',
+    luckyTitle: lang === 'en' ? '✨ Your energy today'       : '✨ Твоя энергия сегодня',
+    colorLabel: lang === 'en' ? 'Lucky colour'               : 'Счастливый цвет',
+    numberLabel:lang === 'en' ? 'Lucky number'               : 'Счастливое число',
+    moodLabel:  lang === 'en' ? 'Today\'s mood'              : 'Настроение дня',
   };
 
   return (
@@ -341,11 +344,26 @@ export default function Astrology({ birthday, lang = 'en' }) {
 
       <div style={{ ...styles.divider, background: `linear-gradient(90deg, transparent, ${zodiac.color}44, transparent)` }} />
 
-      {/* Lucky color swatch */}
-      <p style={styles.luckyTitle}>{labels.luckyColor}</p>
-      <div style={styles.colorSwatch}>
+      {/* Lucky elements */}
+      <p style={styles.luckyTitle}>{labels.luckyTitle}</p>
+
+      {/* Color swatch */}
+      <div style={styles.colorRow}>
         <div style={{ ...styles.swatchCircle, backgroundColor: swatchColor }} />
-        <p style={styles.colorName}>{lucky.color}</p>
+        <div>
+          <p style={styles.luckyLabel}>{labels.colorLabel}</p>
+          <p style={styles.luckyValue}>{lucky.color}</p>
+        </div>
+      </div>
+
+      {/* Number + Mood as simple text rows */}
+      <div style={styles.textRow}>
+        <span style={styles.luckyLabel}>{labels.numberLabel}</span>
+        <span style={styles.luckyValue}>{lucky.number}</span>
+      </div>
+      <div style={styles.textRow}>
+        <span style={styles.luckyLabel}>{labels.moodLabel}</span>
+        <span style={styles.luckyValue}>{lucky.mood}</span>
       </div>
 
     </div>
@@ -436,25 +454,40 @@ const styles = {
     margin: 0,
     textAlign: 'center',
   },
-  colorSwatch: {
+  colorRow: {
     display: 'flex',
-    flexDirection: 'column',
     alignItems: 'center',
-    gap: '10px',
+    gap: '14px',
   },
   swatchCircle: {
-    width: '64px',
-    height: '64px',
+    width: '48px',
+    height: '48px',
     borderRadius: '50%',
-    boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
-    border: '3px solid rgba(255,255,255,0.8)',
+    flexShrink: 0,
+    boxShadow: '0 4px 12px rgba(0,0,0,0.12)',
+    border: '3px solid rgba(255,255,255,0.9)',
   },
-  colorName: {
+  textRow: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    paddingBottom: '8px',
+    borderBottom: '1px solid #ede8e2',
+  },
+  luckyLabel: {
+    fontFamily: "'Inter', sans-serif",
+    fontSize: '11px',
+    color: '#b0a090',
+    letterSpacing: '0.06em',
+    textTransform: 'uppercase',
+    margin: 0,
+  },
+  luckyValue: {
     fontFamily: "'Lora', Georgia, serif",
-    fontSize: '16px',
+    fontSize: '14px',
     color: '#2d2518',
     fontWeight: 500,
     margin: 0,
-    textAlign: 'center',
   },
 };
