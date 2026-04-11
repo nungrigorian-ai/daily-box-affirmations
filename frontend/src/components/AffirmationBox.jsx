@@ -207,7 +207,7 @@ export default function AffirmationBox() {
 
 // ─── Styles ───────────────────────────────────────────────────────────────────
 const styles = {
-  page: { display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', width:'100%', gap:'14px' },
+  page: { display:'flex', flexDirection:'column', alignItems:'center', width:'100%', gap:'14px' },
   header: { textAlign:'center' },
   dateLabel: { fontFamily:"'Inter',sans-serif", fontWeight:300, fontSize:'13px', letterSpacing:'0.15em', textTransform:'uppercase', color:'#b0a090', marginBottom:'6px' },
   title: { fontFamily:"'Lora',Georgia,serif", fontWeight:500, fontSize:'clamp(26px,5vw,36px)', color:'#2d2518', letterSpacing:'-0.01em', lineHeight:1.2 },
