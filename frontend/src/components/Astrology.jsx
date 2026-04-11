@@ -344,26 +344,30 @@ export default function Astrology({ birthday, lang = 'en' }) {
 
       <div style={{ ...styles.divider, background: `linear-gradient(90deg, transparent, ${zodiac.color}44, transparent)` }} />
 
-      {/* Lucky elements */}
+      {/* Lucky elements — 3 column layout */}
       <p style={styles.luckyTitle}>{labels.luckyTitle}</p>
+      <div style={styles.luckyRow}>
 
-      {/* Color swatch */}
-      <div style={styles.colorRow}>
-        <div style={{ ...styles.swatchCircle, backgroundColor: swatchColor }} />
-        <div>
+        <div style={styles.luckyCol}>
           <p style={styles.luckyLabel}>{labels.colorLabel}</p>
+          <div style={{ ...styles.swatchCircle, backgroundColor: swatchColor }} />
           <p style={styles.luckyValue}>{lucky.color}</p>
         </div>
-      </div>
 
-      {/* Number + Mood as simple text rows */}
-      <div style={styles.textRow}>
-        <span style={styles.luckyLabel}>{labels.numberLabel}</span>
-        <span style={styles.luckyValue}>{lucky.number}</span>
-      </div>
-      <div style={styles.textRow}>
-        <span style={styles.luckyLabel}>{labels.moodLabel}</span>
-        <span style={styles.luckyValue}>{lucky.mood}</span>
+        <div style={styles.luckySep} />
+
+        <div style={styles.luckyCol}>
+          <p style={styles.luckyLabel}>{labels.numberLabel}</p>
+          <p style={styles.luckyNumber}>{lucky.number}</p>
+        </div>
+
+        <div style={styles.luckySep} />
+
+        <div style={styles.luckyCol}>
+          <p style={styles.luckyLabel}>{labels.moodLabel}</p>
+          <p style={styles.luckyValue}>{lucky.mood}</p>
+        </div>
+
       </div>
 
     </div>
@@ -454,40 +458,56 @@ const styles = {
     margin: 0,
     textAlign: 'center',
   },
-  colorRow: {
+  luckyRow: {
     display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    width: '100%',
+    gap: '8px',
+  },
+  luckyCol: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
-    gap: '14px',
+    gap: '8px',
+    textAlign: 'center',
+  },
+  luckySep: {
+    width: '1px',
+    alignSelf: 'stretch',
+    backgroundColor: '#ede8e2',
+    margin: '4px 0',
   },
   swatchCircle: {
-    width: '48px',
-    height: '48px',
+    width: '44px',
+    height: '44px',
     borderRadius: '50%',
-    flexShrink: 0,
     boxShadow: '0 4px 12px rgba(0,0,0,0.12)',
     border: '3px solid rgba(255,255,255,0.9)',
   },
-  textRow: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-    paddingBottom: '8px',
-    borderBottom: '1px solid #ede8e2',
-  },
   luckyLabel: {
     fontFamily: "'Inter', sans-serif",
-    fontSize: '11px',
+    fontSize: '10px',
     color: '#b0a090',
-    letterSpacing: '0.06em',
+    letterSpacing: '0.08em',
     textTransform: 'uppercase',
     margin: 0,
   },
   luckyValue: {
     fontFamily: "'Lora', Georgia, serif",
-    fontSize: '14px',
+    fontSize: '13px',
     color: '#2d2518',
     fontWeight: 500,
     margin: 0,
+    lineHeight: 1.4,
+  },
+  luckyNumber: {
+    fontFamily: "'Lora', Georgia, serif",
+    fontSize: '28px',
+    color: '#2d2518',
+    fontWeight: 500,
+    margin: 0,
+    lineHeight: 1,
   },
 };
