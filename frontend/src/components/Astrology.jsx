@@ -266,15 +266,42 @@ const LUCKY = {
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
-export default function Astrology({ birthday }) {
-  const { month, day } = birthday;
-  const sign    = getZodiacSign(month, day);
-  const zodiac  = ZODIAC[sign];
+// Color name → CSS color mapping for swatches
+const COLOR_MAP = {
+  'Red': '#c0392b', 'Orange': '#e67e22', 'Coral': '#e74c3c', 'Scarlet': '#c0392b',
+  'Gold': '#f1c40f', 'Crimson': '#9b2335', 'Amber': '#f39c12', 'Green': '#27ae60',
+  'Pink': '#e91e8c', 'Ivory': '#fffff0', 'Sage': '#87ae73', 'Blush': '#f4a7b9',
+  'Forest': '#228b22', 'Cream': '#fffdd0', 'Yellow': '#f9e642', 'Sky Blue': '#87ceeb',
+  'Silver': '#c0c0c0', 'Lavender': '#967bb6', 'White': '#f8f8f8', 'Turquoise': '#40e0d0',
+  'Mint': '#98ff98', 'Sea Blue': '#006994', 'Soft Pink': '#ffb6c1', 'Opal': '#a8c5da',
+  'Royal Purple': '#7851a9', 'Sunny Yellow': '#ffe135', 'Bright Red': '#ff0000',
+  'Copper': '#b87333', 'Sage Green': '#87ae73', 'Navy': '#001f5b', 'Dusty Rose': '#dcae96',
+  'Peach Selenite': '#ffcba4', 'Olive': '#808000', 'Grey': '#808080', 'Rose': '#ff007f',
+  'Blue': '#0000ff', 'Peach': '#ffcba4', 'Deep Red': '#8b0000', 'Black': '#222222',
+  'Burgundy': '#800020', 'Midnight Blue': '#191970', 'Maroon': '#800000',
+  'Indigo': '#4b0082', 'Charcoal': '#36454f', 'Purple': '#800080',
+  'Royal Blue': '#4169e1', 'Violet': '#ee82ee', 'Cobalt': '#0047ab',
+  'Teal': '#008080', 'Brown': '#964b00', 'Dark Green': '#006400',
+  'Slate': '#708090', 'Electric Blue': '#7df9ff', 'Cyan': '#00ffff',
+  'Sea Green': '#2e8b57', 'Aqua': '#00ffff', 'Soft Blue': '#add8e6',
+  'Lilac': '#c8a2c8', 'Pearl': '#f0ead6', 'Mist': '#c4c4c4',
+  'Forest Green': '#228b22', 'Sunny Orange': '#ff7c00',
+};
 
-  // Use day of week (0–6) to pick today's guidance set
-  const dayIndex  = new Date().getDay();
-  const guidance  = DAILY_GUIDANCE[sign][dayIndex];
-  const lucky     = LUCKY[sign][dayIndex];
+export default function Astrology({ birthday, lang = 'en' }) {
+  const { month, day } = birthday;
+  const sign   = getZodiacSign(month, day);
+  const zodiac = ZODIAC[sign];
+  const dayIndex = new Date().getDay();
+  const guidance = DAILY_GUIDANCE[sign][dayIndex];
+  const lucky    = LUCKY[sign][dayIndex];
+  const swatchColor = COLOR_MAP[lucky.color] || zodiac.color;
+
+  const labels = {
+    lean:     lang === 'en' ? '✅ Today, lean into'  : '✅ Сегодня, устремись к',
+    mindful:  lang === 'en' ? '🌿 Be mindful of'     : '🌿 Будь внимательна к',
+    luckyColor: lang === 'en' ? '✨ Your lucky color today' : '✨ Твой счастливый цвет сегодня',
+  };
 
   return (
     <div style={{ ...styles.card, borderColor: zodiac.color + '33' }}>
@@ -292,7 +319,7 @@ export default function Astrology({ birthday }) {
 
       {/* Do's */}
       <div style={styles.section}>
-        <p style={{ ...styles.sectionLabel, color: '#5a7a5a' }}>✅ Today, lean into</p>
+        <p style={{ ...styles.sectionLabel, color: '#5a7a5a' }}>{labels.lean}</p>
         {guidance.dos.map((item, i) => (
           <div key={i} style={styles.item}>
             <span style={{ ...styles.dot, backgroundColor: '#5a7a5a' }} />
@@ -303,7 +330,7 @@ export default function Astrology({ birthday }) {
 
       {/* Don'ts */}
       <div style={styles.section}>
-        <p style={{ ...styles.sectionLabel, color: '#8a5a4a' }}>🌿 Be mindful of</p>
+        <p style={{ ...styles.sectionLabel, color: '#8a5a4a' }}>{labels.mindful}</p>
         {guidance.donts.map((item, i) => (
           <div key={i} style={styles.item}>
             <span style={{ ...styles.dot, backgroundColor: '#c4a882' }} />
@@ -314,24 +341,11 @@ export default function Astrology({ birthday }) {
 
       <div style={{ ...styles.divider, background: `linear-gradient(90deg, transparent, ${zodiac.color}44, transparent)` }} />
 
-      {/* Lucky elements */}
-      <p style={styles.luckyTitle}>✨ Your lucky elements today</p>
-      <div style={styles.luckyRow}>
-        <div style={{ ...styles.luckyCard, borderColor: zodiac.color + '44' }}>
-          <span style={styles.luckyIcon}>🎨</span>
-          <p style={styles.luckyLabel}>Color</p>
-          <p style={styles.luckyValue}>{lucky.color}</p>
-        </div>
-        <div style={{ ...styles.luckyCard, borderColor: zodiac.color + '44' }}>
-          <span style={styles.luckyIcon}>🔢</span>
-          <p style={styles.luckyLabel}>Number</p>
-          <p style={styles.luckyValue}>{lucky.number}</p>
-        </div>
-        <div style={{ ...styles.luckyCard, borderColor: zodiac.color + '44' }}>
-          <span style={styles.luckyIcon}>💎</span>
-          <p style={styles.luckyLabel}>Crystal</p>
-          <p style={styles.luckyValue}>{lucky.crystal}</p>
-        </div>
+      {/* Lucky color swatch */}
+      <p style={styles.luckyTitle}>{labels.luckyColor}</p>
+      <div style={styles.colorSwatch}>
+        <div style={{ ...styles.swatchCircle, backgroundColor: swatchColor }} />
+        <p style={styles.colorName}>{lucky.color}</p>
       </div>
 
     </div>
@@ -422,35 +436,22 @@ const styles = {
     margin: 0,
     textAlign: 'center',
   },
-  luckyRow: {
-    display: 'flex',
-    gap: '10px',
-  },
-  luckyCard: {
-    flex: 1,
-    backgroundColor: '#fff',
-    borderRadius: '14px',
-    border: '1px solid',
-    padding: '12px 8px',
+  colorSwatch: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    gap: '4px',
+    gap: '10px',
   },
-  luckyIcon: {
-    fontSize: '20px',
+  swatchCircle: {
+    width: '64px',
+    height: '64px',
+    borderRadius: '50%',
+    boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
+    border: '3px solid rgba(255,255,255,0.8)',
   },
-  luckyLabel: {
-    fontFamily: "'Inter', sans-serif",
-    fontSize: '10px',
-    color: '#b0a090',
-    letterSpacing: '0.06em',
-    textTransform: 'uppercase',
-    margin: 0,
-  },
-  luckyValue: {
+  colorName: {
     fontFamily: "'Lora', Georgia, serif",
-    fontSize: '13px',
+    fontSize: '16px',
     color: '#2d2518',
     fontWeight: 500,
     margin: 0,

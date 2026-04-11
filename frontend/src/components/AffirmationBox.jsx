@@ -42,28 +42,31 @@ function getLocalDate() {
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 }
 
-function getDailyAffirmation() {
+function getDailyAffirmation(lang = 'en') {
   const today = getLocalDate();
-  const cacheKey = `dba_${today}`;
+  const cacheKey = `dba_${today}_${lang}`;
   const cached = localStorage.getItem(cacheKey);
 
   if (cached) {
     try { return { affirmation: JSON.parse(cached), alreadyOpened: true }; } catch {}
   }
 
+  // Filter by selected language
+  const pool = AFFIRMATIONS.filter(a => a.lang === lang);
+
   // Pick a random affirmation, avoiding yesterday's if possible
-  const yesterdayKey = Object.keys(localStorage).filter(k => k.startsWith('dba_') && k !== cacheKey)[0];
+  const yesterdayKey = Object.keys(localStorage).filter(k => k.startsWith(`dba_`) && k !== cacheKey && k.endsWith(`_${lang}`))[0];
   let yesterdayAffirmation = null;
   if (yesterdayKey) {
     try { yesterdayAffirmation = JSON.parse(localStorage.getItem(yesterdayKey)); } catch {}
   }
 
-  let pool = AFFIRMATIONS;
-  if (yesterdayAffirmation && AFFIRMATIONS.length > 1) {
-    pool = AFFIRMATIONS.filter(a => a.text !== yesterdayAffirmation.text);
+  let filteredPool = pool;
+  if (yesterdayAffirmation && pool.length > 1) {
+    filteredPool = pool.filter(a => a.text !== yesterdayAffirmation.text);
   }
 
-  const picked = pool[Math.floor(Math.random() * pool.length)];
+  const picked = filteredPool[Math.floor(Math.random() * filteredPool.length)];
   localStorage.setItem(cacheKey, JSON.stringify(picked));
 
   // Clean up old keys (keep only last 2 days)
@@ -117,29 +120,32 @@ const BoxOpenIcon = () => (
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
-export default function AffirmationBox() {
-  const [phase, setPhase] = useState('idle'); // 'idle' | 'opening' | 'open'
+export default function AffirmationBox({ lang = 'en' }) {
+  const [phase, setPhase] = useState('idle');
   const [affirmation, setAffirmation] = useState(null);
   const [alreadyOpened, setAlreadyOpened] = useState(false);
 
-  // On mount: check if already opened today
+  // Reset when language changes
   useEffect(() => {
     const today = getLocalDate();
-    const cached = localStorage.getItem(`dba_${today}`);
+    const cached = localStorage.getItem(`dba_${today}_${lang}`);
     if (cached) {
       try {
         setAffirmation(JSON.parse(cached));
         setAlreadyOpened(true);
         setPhase('open');
       } catch {}
+    } else {
+      setPhase('idle');
+      setAffirmation(null);
     }
-  }, []);
+  }, [lang]);
 
   function handleBoxClick() {
     if (phase !== 'idle') return;
     setPhase('opening');
     setTimeout(() => {
-      const { affirmation, alreadyOpened } = getDailyAffirmation();
+      const { affirmation, alreadyOpened } = getDailyAffirmation(lang);
       setAffirmation(affirmation);
       setAlreadyOpened(alreadyOpened);
       setPhase('open');
