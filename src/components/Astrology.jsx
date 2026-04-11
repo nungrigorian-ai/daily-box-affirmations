@@ -380,20 +380,22 @@ export default function Astrology({ birthday, lang = 'en' }) {
 const styles = {
   card: {
     width: '100%',
-    maxWidth: '420px',
+    boxSizing: 'border-box',
     backgroundColor: '#faf7f2',
-    borderRadius: '24px',
-    padding: '28px 24px',
+    borderRadius: '20px',
+    padding: '20px 16px',
     display: 'flex',
     flexDirection: 'column',
-    gap: '16px',
+    gap: '14px',
     border: '1px solid',
     boxShadow: '0 4px 20px rgba(80,60,40,0.08)',
+    overflow: 'hidden',
   },
   header: {
     display: 'flex',
     alignItems: 'center',
-    gap: '14px',
+    gap: '12px',
+    minWidth: 0,
   },
   signEmoji: {
     fontSize: '40px',
@@ -435,6 +437,7 @@ const styles = {
     display: 'flex',
     alignItems: 'flex-start',
     gap: '10px',
+    minWidth: 0,
   },
   dot: {
     width: '6px',
@@ -449,6 +452,8 @@ const styles = {
     color: '#4a3d2e',
     lineHeight: 1.6,
     margin: 0,
+    minWidth: 0,
+    wordBreak: 'break-word',
   },
   luckyTitle: {
     fontFamily: "'Inter', sans-serif",
@@ -469,11 +474,13 @@ const styles = {
   },
   luckyCol: {
     flex: 1,
+    minWidth: 0,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    gap: '8px',
+    gap: '6px',
     textAlign: 'center',
+    overflow: 'hidden',
   },
   luckySep: {
     width: '1px',
@@ -504,11 +511,14 @@ const styles = {
   },
   luckyLabel: {
     fontFamily: "'Inter', sans-serif",
-    fontSize: '10px',
+    fontSize: '9px',
     color: '#b0a090',
-    letterSpacing: '0.08em',
+    letterSpacing: '0.06em',
     textTransform: 'uppercase',
     margin: 0,
+    width: '100%',
+    textAlign: 'center',
+    wordBreak: 'break-word',
   },
   luckyValue: {
     fontFamily: "'Lora', Georgia, serif",
@@ -516,7 +526,9 @@ const styles = {
     color: '#2d2518',
     fontWeight: 500,
     margin: 0,
-    lineHeight: 1.4,
+    lineHeight: 1.3,
+    wordBreak: 'break-word',
+    textAlign: 'center',
   },
   luckyNumber: {
     fontFamily: "'Lora', Georgia, serif",

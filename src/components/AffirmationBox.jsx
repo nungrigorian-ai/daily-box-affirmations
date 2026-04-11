@@ -336,7 +336,7 @@ const styles = {
   dateLabel: { fontFamily:"'Inter',sans-serif", fontWeight:300, fontSize:'13px', letterSpacing:'0.15em', textTransform:'uppercase', color:'#b0a090', marginBottom:'6px' },
   title: { fontFamily:"'Lora',Georgia,serif", fontWeight:500, fontSize:'clamp(26px,5vw,36px)', color:'#2d2518', letterSpacing:'-0.01em', lineHeight:1.2 },
   subtitle: { fontFamily:"'Lora',Georgia,serif", fontStyle:'italic', fontWeight:400, fontSize:'15px', color:'#9a8870', marginTop:'4px' },
-  card: { position:'relative', width:'100%', maxWidth:'420px', minHeight:'240px', backgroundColor:'#ffffff', borderRadius:'20px', padding:'28px 28px', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', boxShadow:'0 4px 24px rgba(100,80,50,0.10)', transition:'transform 0.4s cubic-bezier(0.34,1.56,0.64,1)', overflow:'hidden', border:'1px solid rgba(196,168,130,0.2)' },
+  card: { position:'relative', width:'100%', boxSizing:'border-box', minHeight:'240px', backgroundColor:'#ffffff', borderRadius:'20px', padding:'24px 18px', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', boxShadow:'0 4px 24px rgba(100,80,50,0.10)', transition:'transform 0.4s cubic-bezier(0.34,1.56,0.64,1)', overflow:'hidden', border:'1px solid rgba(196,168,130,0.2)' },
   shimmer: { position:'absolute', inset:0, background:'linear-gradient(105deg,transparent 40%,rgba(255,248,230,0.5) 50%,transparent 60%)', animation:'shimmer 3s ease-in-out infinite', pointerEvents:'none', borderRadius:'24px' },
   closedContent: { display:'flex', flexDirection:'column', alignItems:'center', gap:'16px', animation:'fadeIn 0.4s ease' },
   loadingContent: { display:'flex', flexDirection:'column', alignItems:'center', gap:'16px' },

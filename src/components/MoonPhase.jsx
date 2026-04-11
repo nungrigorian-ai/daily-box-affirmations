@@ -146,15 +146,16 @@ export default function MoonPhase() {
 const styles = {
   card: {
     width: '100%',
-    maxWidth: '420px',
+    boxSizing: 'border-box',
     backgroundColor: '#faf7f2',
-    borderRadius: '24px',
-    padding: '32px 28px',
+    borderRadius: '20px',
+    padding: '24px 18px',
     display: 'flex',
     flexDirection: 'column',
     gap: '14px',
     border: '1px solid',
     boxShadow: '0 4px 20px rgba(80,60,40,0.08)',
+    overflow: 'hidden',
   },
   moonRow: {
     display: 'flex',
