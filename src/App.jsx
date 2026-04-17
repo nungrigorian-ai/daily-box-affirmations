@@ -4,6 +4,8 @@
  * Card 1: Daily Affirmation Box
  * Card 2: Moon Phase
  * Card 3: Your Stars (Astrology)
+ * Card 4: Cycle Tracker
+ * Card 5: Daily Meal Plan (personalized, adaptive, digestion-friendly)
  */
 
 import { useState, useEffect, useRef } from 'react';
@@ -13,6 +15,7 @@ import Astrology      from './components/Astrology';
 import BirthdaySetup  from './components/BirthdaySetup';
 import CycleTracker   from './components/CycleTracker';
 import CycleSetup     from './components/CycleSetup';
+import NutritionPlan  from './components/NutritionPlan';
 
 const GLOBAL_STYLES = `
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -49,10 +52,11 @@ const GLOBAL_STYLES = `
 `;
 
 const CARDS = [
-  { id: 'affirmation', label: 'Message', icon: '🎁' },
-  { id: 'moon',        label: 'Moon',    icon: '🌙' },
-  { id: 'stars',       label: 'Stars',   icon: '✨' },
-  { id: 'cycle',       label: 'Cycle',   icon: '🌸' },
+  { id: 'affirmation', label: 'Message', labelRu: 'Послание', icon: '🎁' },
+  { id: 'moon',        label: 'Moon',    labelRu: 'Луна',     icon: '🌙' },
+  { id: 'stars',       label: 'Stars',   labelRu: 'Звёзды',   icon: '✨' },
+  { id: 'nutrition',   label: 'Nutrition', labelRu: 'Питание',  icon: '🥦' },
+  { id: 'cycle',       label: 'Cycle',   labelRu: 'Цикл',     icon: '🌸' },
 ];
 
 export default function App() {
@@ -180,7 +184,14 @@ export default function App() {
               </div>
             </div>
 
-            {/* Card 4 — Cycle */}
+            {/* Card 4 — Nutrition (Diet + Meals combined) */}
+            <div style={styles.card}>
+              <div style={styles.cardScroll}>
+                <NutritionPlan lang={lang} />
+              </div>
+            </div>
+
+            {/* Card 5 — Cycle */}
             <div style={styles.card}>
               <div style={styles.cardScroll}>
                 <div style={styles.cardHeader}>
@@ -205,6 +216,7 @@ export default function App() {
                 }
               </div>
             </div>
+
           </div>
         </div>
 
@@ -223,7 +235,7 @@ export default function App() {
               <span style={{
                 ...styles.tabLabel,
                 ...(activeCard === i ? styles.tabLabelActive : {}),
-              }}>{card.label}</span>
+              }}>{lang === 'ru' ? card.labelRu : card.label}</span>
               {activeCard === i && <div style={styles.tabIndicator} />}
             </button>
           ))}
