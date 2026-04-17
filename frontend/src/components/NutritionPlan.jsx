@@ -189,6 +189,92 @@ const FOOD_DB = [
   { keys:['fried','жареное','жарила','жарил'], score:1, kcal:200, name:{en:'Fried food',ru:'Жареное'}, label:{en:'cooking method',ru:'способ готовки'}, msg:{en:'Frying creates acrylamide and trans fats. Same ingredients are far healthier grilled, steamed or baked.',ru:'Жарка создаёт акриламид и трансжиры. Те же продукты намного полезнее на гриле, пару или в духовке.'} },
 ];
 
+// ─── Timing advice: what's ideal/okay/avoid per meal slot ────────────────────
+
+const TIMING = {
+  breakfast: {
+    'complex carb':   { en:'Great for breakfast — complex carbs fuel your brain steadily all morning without a 10am energy crash.', ru:'Отлично для завтрака — сложные углеводы питают мозг стабильно всё утро без спада энергии.' },
+    'lean protein':   { en:'Smart morning protein — stabilises blood sugar and keeps hunger away until lunch.', ru:'Умный утренний белок — стабилизирует сахар и удерживает сытость до обеда.' },
+    'complete protein':{ en:'Eggs for breakfast is one of the most nutritionist-approved choices — high satiety, steady energy.', ru:'Яйца на завтрак — один из самых одобренных нутрициологами выборов: высокое насыщение, стабильная энергия.' },
+    'probiotic':      { en:'Probiotics first thing in the morning reach your gut in better condition before stomach acid increases.', ru:'Пробиотики утром достигают кишечника в лучшем состоянии, пока кислотность желудка ещё низкая.' },
+    'healthy fat':    { en:'Healthy fat at breakfast improves absorption of fat-soluble vitamins and keeps you full longer.', ru:'Полезный жир на завтрак улучшает усвоение жирорастворимых витаминов и дольше насыщает.' },
+    'fruit':          { en:'Fruit in the morning is ideal — natural sugars are burned off throughout the active day.', ru:'Фрукты утром идеальны — природный сахар сжигается в течение активного дня.' },
+  },
+  lunch: {
+    'omega-3 protein':{ en:'Perfect for lunch — omega-3 supports afternoon focus, energy and reduces the post-lunch dip.', ru:'Идеально на обед — омега-3 поддерживают послеобеденный фокус и снижают спад энергии.' },
+    'legume protein': { en:'Legumes at lunch are excellent — slow carbs + plant protein keep blood sugar steady all afternoon.', ru:'Бобовые на обед отлично — медленные углеводы + растительный белок держат сахар ровным весь день.' },
+    'complex carb':   { en:'Good timing — eating carbs at lunch gives your body hours to use that glucose for energy.', ru:'Хороший момент — углеводы на обед дают телу время использовать глюкозу для энергии.' },
+    'lean protein':   { en:'Lean protein at lunch supports afternoon muscle maintenance and keeps cravings away.', ru:'Нежирный белок на обед поддерживает мышцы и удерживает от тяги к сладкому после обеда.' },
+    'vegetable':      { en:'Vegetables at every lunch is a hallmark of healthy eaters. Your gut bacteria thank you.', ru:'Овощи на каждый обед — признак здорового питания. Ваши кишечные бактерии благодарят вас.' },
+  },
+  dinner: {
+    'lean protein':   { en:'Light protein at dinner is ideal — easy to digest overnight and supports muscle repair while you sleep.', ru:'Лёгкий белок на ужин идеален — легко переваривается ночью и поддерживает восстановление мышц во сне.' },
+    'omega-3 protein':{ en:'Salmon at dinner is excellent — omega-3 actively reduces inflammation overnight and improves sleep quality.', ru:'Лосось на ужин отлично — омега-3 активно снижают воспаление ночью и улучшают качество сна.' },
+    'vegetable':      { en:'Vegetables at dinner are perfect — very low calorie, high fiber, and the gut repairs itself overnight on this.', ru:'Овощи на ужин идеальны — мало калорий, много клетчатки, кишечник восстанавливается ночью именно на этом.' },
+    'calming':        { en:'Herbal tea in the evening is a nutritionist staple — relaxes intestinal muscles and signals the body to wind down.', ru:'Травяной чай вечером — стандарт нутрициолога: расслабляет кишечник и сигнализирует телу о завершении дня.' },
+    'complete protein':{ en:'Eggs at dinner provide slow-digesting protein that keeps blood sugar stable through the night.', ru:'Яйца на ужин дают медленно усваиваемый белок, который держит сахар стабильным всю ночь.' },
+  },
+  snack: {
+    'nut':            { en:'Ideal snack — the combination of healthy fat + protein keeps blood sugar stable and hunger away for 2–3 hours.', ru:'Идеальный перекус — здоровый жир + белок держат сахар стабильным и голод — 2–3 часа.' },
+    'seed':           { en:'Seeds as a snack are nutrient-dense and low calorie — a nutritionist\'s favourite between-meal choice.', ru:'Семена на перекус питательны и малокалорийны — любимый выбор нутрициолога между приёмами пищи.' },
+    'fruit':          { en:'Smart snack — natural sugar gives a quick energy lift, fiber slows the release so there\'s no crash.', ru:'Умный перекус — природный сахар даёт быстрый заряд, клетчатка замедляет усвоение — без спада.' },
+    'probiotic':      { en:'Yogurt or kefir as a snack feeds your gut microbiome between meals — continuous gut care.', ru:'Йогурт или кефир на перекус питает микробиом между приёмами пищи — непрерывный уход за кишечником.' },
+  },
+};
+
+// ─── Food combination rules ───────────────────────────────────────────────────
+
+const COMBOS = [
+  {
+    trigger: ['spinach','шпинат','broccoli','брокколи','lentil','lentils','чечевица','beef','говядина'],
+    partner: ['lemon','citrus','orange','апельсин','kiwi','киви','tangerine','мандарин','bell pepper','перец болгарский','sweet pepper'],
+    type: 'great',
+    msg: { en:'Vitamin C from your citrus/pepper triples iron absorption from the greens or meat — this is exactly the combination a nutritionist would design.', ru:'Витамин C из цитруса/перца утраивает усвоение железа из зелени или мяса — именно такое сочетание составил бы нутрициолог.' },
+  },
+  {
+    trigger: ['salmon','лосось','fish','рыба','cod','треска','tuna','тунец'],
+    partner: ['olive oil','оливковое масло','avocado','авокадо'],
+    type: 'great',
+    msg: { en:'Healthy fat alongside fish multiplies omega-3 absorption — your body can absorb up to 3× more with fat present. Very professional eating.', ru:'Полезный жир рядом с рыбой умножает усвоение омега-3 — организм усваивает до 3× больше при наличии жира. Очень грамотное питание.' },
+  },
+  {
+    trigger: ['egg','eggs','яйцо','яйца'],
+    partner: ['spinach','шпинат','broccoli','брокколи','arugula','руккола','carrot','морковь'],
+    type: 'great',
+    msg: { en:'Fat from eggs unlocks the fat-soluble vitamins (A, K, E) in your vegetables — without fat they pass through almost unused. This combination is textbook nutrition.', ru:'Жир яиц высвобождает жирорастворимые витамины (A, K, E) из овощей — без жира они почти не усваиваются. Это учебник нутрициологии.' },
+  },
+  {
+    trigger: ['oat','oats','oatmeal','овсянка','овёс'],
+    partner: ['berries','berry','ягоды','kiwi','киви','apple','яблоко'],
+    type: 'great',
+    msg: { en:'Oat beta-glucan + fruit antioxidants is a classic nutritionist breakfast: sustained energy, gut microbiome feeding, and anti-inflammatory protection in one bowl.', ru:'Бета-глюкан овса + антиоксиданты фруктов — классический завтрак нутрициолога: стабильная энергия, питание микробиома и защита от воспаления в одной тарелке.' },
+  },
+  {
+    trigger: ['chicken','курица','грудка','turkey','индейка'],
+    partner: ['broccoli','брокколи','cauliflower','цветная капуста','spinach','шпинат'],
+    type: 'great',
+    msg: { en:'Lean protein + cruciferous vegetables is one of the most recommended meal combinations — supports detox pathways, metabolism, and covers all essential amino acids.', ru:'Нежирный белок + крестоцветные овощи — одно из самых рекомендованных сочетаний: поддерживает детокс, метаболизм и покрывает все незаменимые аминокислоты.' },
+  },
+  {
+    trigger: ['buckwheat','гречка','quinoa','киноа','lentil','lentils','чечевица'],
+    partner: ['chicken','курица','egg','eggs','яйцо','salmon','лосось','fish','рыба'],
+    type: 'great',
+    msg: { en:'Complex carb + protein together slows glucose absorption and keeps blood sugar stable for 3–4 hours — the foundation of balanced eating.', ru:'Сложный углевод + белок вместе замедляет усвоение глюкозы и держит сахар стабильным 3–4 часа — основа сбалансированного питания.' },
+  },
+  {
+    trigger: ['coffee','кофе'],
+    partner: ['egg','eggs','яйцо','beef','говядина','spinach','шпинат','lentil','lentils','чечевица','broccoli','брокколи'],
+    type: 'watch',
+    msg: { en:'Coffee right after iron-rich food blocks up to 80% of iron absorption — wait at least 1 hour between your coffee and iron sources (meat, greens, legumes).', ru:'Кофе сразу после железосодержащих продуктов блокирует до 80% усвоения железа — подождите минимум 1 час между кофе и источниками железа (мясо, зелень, бобовые).' },
+  },
+  {
+    trigger: ['cheese','сыр','kefir','кефир','yogurt','йогурт'],
+    partner: ['lentil','lentils','чечевица','spinach','шпинат','beef','говядина'],
+    type: 'watch',
+    msg: { en:'Dairy calcium competes with iron absorption — better to have dairy and iron-rich foods at separate meals for maximum benefit from both.', ru:'Кальций молочных продуктов конкурирует с усвоением железа — лучше есть молочное и железосодержащие продукты в разные приёмы пищи.' },
+  },
+];
+
 // ─── Day Analysis Engine ──────────────────────────────────────────────────────
 
 function analyzeDay(meals, L) {
@@ -201,7 +287,6 @@ function analyzeDay(meals, L) {
   if (allItems.length === 0) return null;
 
   const matched = [], unmatched = [];
-  const seenFoodIds = new Set();
 
   for (const item of allItems) {
     const text = item.text.toLowerCase();
@@ -209,24 +294,42 @@ function analyzeDay(meals, L) {
     for (const food of FOOD_DB) {
       for (const key of food.keys) {
         if (text.includes(key.toLowerCase())) {
-          if (!best || food.score < best.score) best = food; // take worst match (conservative)
+          if (!best || food.score < best.score) best = food;
           break;
         }
       }
     }
-    if (best) { matched.push({ item, food: best }); seenFoodIds.add(best.name.en); }
+    if (best) matched.push({ item, food: best });
     else unmatched.push(item);
   }
 
-  const great  = matched.filter(m => m.food.score >= 4);
-  const watch  = matched.filter(m => m.food.score >= 2 && m.food.score <= 3);
-  const avoid  = matched.filter(m => m.food.score <= 1);
+  // Enrich great matches with timing advice
+  const allTexts = allItems.map(i => i.text.toLowerCase());
+
+  const great = matched
+    .filter(m => m.food.score >= 4)
+    .map(m => {
+      const slotTiming = TIMING[m.item.slot];
+      const timingNote = slotTiming
+        ? Object.entries(slotTiming).find(([label]) => m.food.label.en.includes(label))?.[1]
+        : null;
+      return { ...m, timingNote };
+    });
+
+  const watch = matched.filter(m => m.food.score >= 2 && m.food.score <= 3);
+  const avoid = matched.filter(m => m.food.score <= 1);
+
+  // Detect food combinations
+  const combos = COMBOS.filter(rule => {
+    const hasTrigger = rule.trigger.some(k => allTexts.some(t => t.includes(k)));
+    const hasPartner = rule.partner.some(k => allTexts.some(t => t.includes(k)));
+    return hasTrigger && hasPartner;
+  });
 
   const avgScore = matched.length ? matched.reduce((s,m) => s + m.food.score, 0) / matched.length : 0;
   const dayScore = Math.round((avgScore / 5) * 10);
 
-  // Detect patterns for insight
-  const hasProtein = matched.some(m => ['lean_protein','omega3_protein','complete_protein','protein','probiotic','legume_protein'].some(g => m.food.label.en.includes('protein') || m.food.label.en.includes('probiotic')));
+  const hasProtein = matched.some(m => m.food.label.en.includes('protein') || m.food.label.en.includes('probiotic'));
   const hasVeg     = matched.some(m => m.food.label.en === 'vegetable');
   const hasFried   = matched.some(m => m.food.keys.some(k => ['fried','жареное'].includes(k)));
   const hasAlcohol = matched.some(m => m.food.name.en === 'Alcohol');
@@ -234,24 +337,24 @@ function analyzeDay(meals, L) {
 
   let insight = { en:'', ru:'' };
   if (hasAlcohol) {
-    insight = { en:'Alcohol disrupts deep sleep and raises cortisol — even one drink can affect fat loss for up to 3 days.',ru:'Алкоголь нарушает глубокий сон и повышает кортизол — даже один бокал влияет на сжигание жира до 3 дней.' };
+    insight = { en:'Alcohol raises cortisol for 24–48 hours and disrupts deep sleep — even one drink slows fat loss for up to 3 days. On rest days, choose sparkling water with lime.', ru:'Алкоголь повышает кортизол на 24–48 часов и нарушает глубокий сон — даже один бокал замедляет жиросжигание на 3 дня. В дни отдыха выбирайте газированную воду с лаймом.' };
   } else if (hasSoda) {
-    insight = { en:'Swap soda for sparkling water with lemon — you get the bubbles without the sugar spike.',ru:'Замените газировку на минеральную воду с лимоном — те же пузырьки без скачка сахара.' };
+    insight = { en:'Soda spikes insulin, feeds harmful gut bacteria and promotes fat storage. Swap for sparkling water with fresh lemon — identical sensation, zero damage.', ru:'Газировка вызывает скачок инсулина, питает вредные бактерии и способствует накоплению жира. Замените на минеральную воду с лимоном — те же ощущения, ноль вреда.' };
   } else if (hasFried) {
-    insight = { en:'Next time try baking or grilling instead of frying — same flavours, far fewer harmful compounds.',ru:'В следующий раз попробуйте запечь или приготовить на гриле вместо жарки — те же вкусы, намного меньше вредных веществ.' };
+    insight = { en:'Frying creates acrylamide and trans fats that promote inflammation. Same foods grilled, steamed or oven-baked have 60–70% fewer harmful compounds and often taste just as good.', ru:'Жарка создаёт акриламид и трансжиры, провоцирующие воспаление. Те же продукты на гриле, пару или в духовке содержат на 60–70% меньше вредных веществ.' };
   } else if (!hasVeg) {
-    insight = { en:'No vegetables today — try adding just one handful to your next meal. Even frozen counts!',ru:'Сегодня без овощей — попробуйте добавить хотя бы горсть к следующему приёму пищи. Даже замороженные считаются!' };
+    insight = { en:'No vegetables logged today. Even one handful of any vegetable feeds beneficial gut bacteria and provides micronutrients most people are chronically deficient in. Try to add greens to every meal.', ru:'Сегодня без овощей. Даже одна горсть любого овоща питает полезные бактерии и даёт микронутриенты, которых большинству людей хронически не хватает. Добавляйте зелень к каждому приёму.' };
   } else if (!hasProtein) {
-    insight = { en:'Add a protein source (eggs, fish, chicken, or lentils) at each meal to stay full and protect muscle.',ru:'Добавьте белок (яйца, рыба, курица или чечевица) к каждому приёму пищи — насыщает и защищает мышцы.' };
+    insight = { en:'No protein source today — protein is essential at every meal to maintain muscle, regulate hunger hormones, and keep blood sugar stable. Add eggs, fish, chicken, or legumes.', ru:'Сегодня без белка — белок необходим на каждый приём пищи: поддерживает мышцы, регулирует гормоны голода и стабилизирует сахар крови. Добавьте яйца, рыбу, курицу или бобовые.' };
   } else if (dayScore >= 8) {
-    insight = { en:'Exceptional day! Your gut bacteria are thriving on these choices. Keep this momentum.',ru:'Исключительный день! Ваши кишечные бактерии процветают от таких выборов. Держите этот импульс.' };
+    insight = { en:'This is what professional eating looks like. Your choices today support fat metabolism, gut health, hormones, and energy simultaneously. This is the standard to build from.', ru:'Вот как выглядит профессиональное питание. Ваши выборы сегодня поддерживают жировой обмен, здоровье кишечника, гормоны и энергию одновременно. Это стандарт, от которого нужно отталкиваться.' };
   } else if (dayScore >= 6) {
-    insight = { en:'Good day overall! A few small swaps tomorrow and you\'ll be in excellent shape.',ru:'В целом хороший день! Несколько небольших замен завтра — и будет отлично.' };
+    insight = { en:'Solid day. Identify the one weakest choice and swap it tomorrow — that\'s how lasting habits are built, one decision at a time.', ru:'Хороший день. Определите один самый слабый выбор и замените его завтра — именно так строятся устойчивые привычки, одно решение за раз.' };
   } else {
-    insight = { en:'Every meal is a fresh start. Tomorrow, try swapping one processed item for a whole food.',ru:'Каждый приём пищи — это свежий старт. Завтра попробуйте заменить один переработанный продукт на цельный.' };
+    insight = { en:'Every meal is a new opportunity. Tomorrow pick one anchor meal (usually breakfast) and make it perfect — a strong breakfast sets the tone for the whole day.', ru:'Каждый приём пищи — новая возможность. Завтра выберите один опорный приём (обычно завтрак) и сделайте его идеальным — сильный завтрак задаёт тон всему дню.' };
   }
 
-  return { great, watch, avoid, unmatched, dayScore, insight };
+  return { great, watch, avoid, unmatched, combos, dayScore, insight };
 }
 
 // ─── Sub-tab: Food Journal (Today) ───────────────────────────────────────────
@@ -482,34 +585,83 @@ function TodayMeals({ lang:L, profile }) {
           </div>
 
           {/* Great choices */}
-          {analysis.great.length > 0 && (
-            <div style={{ background:'#f0f8f0', border:'1px solid #b0d8b0', borderRadius:'14px', padding:'14px' }}>
-              <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', fontWeight:700, color:'#3a6a3a', letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:'10px' }}>
-                ✅ {L==='en' ? 'What you did right' : 'Что вы сделали правильно'}
+          {analysis.great.length > 0 && (() => {
+            const slotLabels = {
+              breakfast: { en:'at breakfast', ru:'на завтраке' },
+              lunch:     { en:'at lunch',     ru:'на обеде' },
+              dinner:    { en:'at dinner',     ru:'на ужине' },
+              snack:     { en:'as a snack',   ru:'в перекус' },
+            };
+            return (
+              <div style={{ background:'#f0f8f0', border:'1px solid #b0d8b0', borderRadius:'14px', padding:'14px' }}>
+                <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', fontWeight:700, color:'#3a6a3a', letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:'10px' }}>
+                  ✅ {L==='en' ? 'What you did right' : 'Что вы сделали правильно'}
+                </p>
+                {analysis.great.map((m,i) => {
+                  const advice = m.timingNote ? m.timingNote[L] : m.food.msg[L];
+                  const slotTag = slotLabels[m.item.slot];
+                  return (
+                    <div key={i} style={{ marginBottom:'10px', paddingBottom:'10px', borderBottom:i<analysis.great.length-1?'1px solid #d0e8d0':'none' }}>
+                      <div style={{ display:'flex', alignItems:'center', gap:'6px', marginBottom:'3px' }}>
+                        <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'13px', fontWeight:600, color:'#2d2518', flex:1 }}>
+                          {m.food.name[L]}
+                        </p>
+                        {slotTag && (
+                          <span style={{ fontFamily:"'Inter',sans-serif", fontSize:'10px', color:'#5a8a5a', background:'#d8f0d8', borderRadius:'8px', padding:'2px 7px', fontWeight:500, whiteSpace:'nowrap' }}>
+                            {slotTag[L]}
+                          </span>
+                        )}
+                      </div>
+                      {m.timingNote ? (
+                        <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', color:'#2a4a2a', lineHeight:1.6 }}>{advice}</p>
+                      ) : (
+                        <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', color:'#3a5a3a', lineHeight:1.5 }}>{advice}</p>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })()}
+
+          {/* Power Combinations */}
+          {analysis.combos.filter(c => c.type === 'great').length > 0 && (
+            <div style={{ background:'linear-gradient(135deg,#eef8ee,#e8f4e8)', border:'1px solid #90c890', borderRadius:'14px', padding:'14px' }}>
+              <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', fontWeight:700, color:'#3a7a3a', letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:'10px' }}>
+                ⚡ {L==='en' ? 'Power Combinations' : 'Мощные комбинации'}
               </p>
-              {analysis.great.map((m,i) => (
-                <div key={i} style={{ marginBottom:'8px', paddingBottom:'8px', borderBottom:i<analysis.great.length-1?'1px solid #d0e8d0':'none' }}>
-                  <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'13px', fontWeight:500, color:'#2d2518', marginBottom:'2px' }}>
-                    {m.food.name[L]} <span style={{ fontSize:'11px', color:'#6a9a6a', fontWeight:400 }}>· {m.item.text}</span>
+              {analysis.combos.filter(c => c.type === 'great').map((combo, i, arr) => (
+                <div key={i} style={{ marginBottom:'8px', paddingBottom:'8px', borderBottom:i<arr.length-1?'1px solid #b0d8b0':'none' }}>
+                  <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', color:'#1a4a1a', lineHeight:1.6 }}>
+                    {combo.msg[L]}
                   </p>
-                  <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', color:'#3a5a3a', lineHeight:1.5 }}>{m.food.msg[L]}</p>
                 </div>
               ))}
             </div>
           )}
 
           {/* Watch */}
-          {analysis.watch.length > 0 && (
+          {(analysis.watch.length > 0 || analysis.combos.filter(c => c.type === 'watch').length > 0) && (
             <div style={{ background:'#fefaf0', border:'1px solid #e0c870', borderRadius:'14px', padding:'14px' }}>
               <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', fontWeight:700, color:'#8a6a20', letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:'10px' }}>
                 ⚠️ {L==='en' ? 'Watch this' : 'Обратите внимание'}
               </p>
               {analysis.watch.map((m,i) => (
-                <div key={i} style={{ marginBottom:'8px', paddingBottom:'8px', borderBottom:i<analysis.watch.length-1?'1px solid #e8d880':'none' }}>
+                <div key={i} style={{ marginBottom:'8px', paddingBottom:'8px', borderBottom:(i<analysis.watch.length-1||analysis.combos.filter(c=>c.type==='watch').length>0)?'1px solid #e8d880':'none' }}>
                   <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'13px', fontWeight:500, color:'#2d2518', marginBottom:'2px' }}>
                     {m.food.name[L]} <span style={{ fontSize:'11px', color:'#9a7a30', fontWeight:400 }}>· {m.item.text}</span>
                   </p>
                   <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', color:'#6a5020', lineHeight:1.5 }}>{m.food.msg[L]}</p>
+                </div>
+              ))}
+              {analysis.combos.filter(c => c.type === 'watch').map((combo, i, arr) => (
+                <div key={`combo-${i}`} style={{ marginBottom:'8px', paddingBottom:'8px', borderBottom:i<arr.length-1?'1px solid #e8d880':'none', paddingTop:'2px' }}>
+                  <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', fontWeight:600, color:'#a07820', marginBottom:'3px' }}>
+                    🔄 {L==='en' ? 'Combination note' : 'Заметка о сочетании'}
+                  </p>
+                  <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', color:'#6a5020', lineHeight:1.6 }}>
+                    {combo.msg[L]}
+                  </p>
                 </div>
               ))}
             </div>
