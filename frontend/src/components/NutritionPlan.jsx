@@ -113,80 +113,80 @@ function getTodayDayIdx() {
 // score: 5=excellent 4=good 3=okay 2=watch 1=limit 0=avoid
 
 const FOOD_DB = [
-  // PROTEINS
-  { keys:['chicken','грудка','курица'], score:5, name:{en:'Chicken',ru:'Курица'}, label:{en:'lean protein',ru:'нежирный белок'}, msg:{en:'Excellent lean protein — keeps you full and supports muscle without extra fat.',ru:'Отличный нежирный белок — насыщает и поддерживает мышцы без лишнего жира.'} },
-  { keys:['turkey','индейка'], score:5, name:{en:'Turkey',ru:'Индейка'}, label:{en:'lean protein',ru:'нежирный белок'}, msg:{en:'Tryptophan converts to serotonin — great for mood and sleep.',ru:'Триптофан → серотонин. Отлично для настроения и сна.'} },
-  { keys:['salmon','лосось'], score:5, name:{en:'Salmon',ru:'Лосось'}, label:{en:'omega-3 protein',ru:'омега-3 белок'}, msg:{en:'Omega-3 rich — reduces inflammation, supports skin, hormones and brain.',ru:'Омега-3 снижают воспаление, улучшают кожу, гормоны и мозг.'} },
-  { keys:['fish','cod','tuna','hake','trout','рыба','треска','тунец','форель','хек'], score:5, name:{en:'Fish',ru:'Рыба'}, label:{en:'lean protein',ru:'нежирный белок'}, msg:{en:'Easiest protein to digest. Ideal for evenings.',ru:'Самый лёгкий белок для пищеварения. Идеален вечером.'} },
-  { keys:['egg','eggs','яйцо','яйца'], score:5, name:{en:'Eggs',ru:'Яйца'}, label:{en:'complete protein',ru:'полноценный белок'}, msg:{en:'Complete protein with all essential amino acids. Easy to digest and versatile.',ru:'Полноценный белок со всеми аминокислотами. Легко усваивается.'} },
-  { keys:['cottage cheese','творог'], score:5, name:{en:'Cottage cheese',ru:'Творог'}, label:{en:'protein',ru:'белок'}, msg:{en:'High protein, probiotic calcium source. Great for bones and gut.',ru:'Много белка, пробиотики и кальций. Хорошо для костей и кишечника.'} },
-  { keys:['kefir','кефир'], score:5, name:{en:'Kefir',ru:'Кефир'}, label:{en:'probiotic',ru:'пробиотик'}, msg:{en:'One of the best probiotic sources — heals gut lining and supports immunity.',ru:'Один из лучших пробиотиков — восстанавливает слизистую и укрепляет иммунитет.'} },
-  { keys:['greek yogurt','йогурт','yogurt'], score:4, name:{en:'Yogurt',ru:'Йогурт'}, label:{en:'probiotic',ru:'пробиотик'}, msg:{en:'Good probiotics. Choose plain, unsweetened — flavoured versions are mostly sugar.',ru:'Хорошие пробиотики. Выбирайте натуральный без сахара — в ароматизированных много сахара.'} },
-  { keys:['beef','говядина'], score:3, name:{en:'Beef',ru:'Говядина'}, label:{en:'protein',ru:'белок'}, msg:{en:'Good iron source. Choose lean cuts and limit to 2–3× per week.',ru:'Хороший источник железа. Постные куски, не чаще 2–3 раз в неделю.'} },
-  { keys:['pork','свинина'], score:2, name:{en:'Pork',ru:'Свинина'}, label:{en:'protein',ru:'белок'}, msg:{en:'Higher in saturated fat. Lean pork occasionally is okay, but not daily.',ru:'Больше насыщенного жира. Постная свинина иногда допустима, но не каждый день.'} },
-  { keys:['sausage','колбаса','hot dog','сосиска','salami','салями','бекон','bacon'], score:0, name:{en:'Processed meat',ru:'Переработанное мясо'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'WHO classifies processed meats as carcinogenic. High in sodium, preservatives and bad fats.',ru:'ВОЗ классифицирует переработанное мясо как канцерогенное. Много соли, консервантов и вредных жиров.'} },
+  // PROTEINS  (kcal = typical serving)
+  { keys:['chicken','грудка','курица'], score:5, kcal:165, name:{en:'Chicken',ru:'Курица'}, label:{en:'lean protein',ru:'нежирный белок'}, msg:{en:'Excellent lean protein — keeps you full and supports muscle without extra fat.',ru:'Отличный нежирный белок — насыщает и поддерживает мышцы без лишнего жира.'} },
+  { keys:['turkey','индейка'], score:5, kcal:160, name:{en:'Turkey',ru:'Индейка'}, label:{en:'lean protein',ru:'нежирный белок'}, msg:{en:'Tryptophan converts to serotonin — great for mood and sleep.',ru:'Триптофан → серотонин. Отлично для настроения и сна.'} },
+  { keys:['salmon','лосось'], score:5, kcal:250, name:{en:'Salmon',ru:'Лосось'}, label:{en:'omega-3 protein',ru:'омега-3 белок'}, msg:{en:'Omega-3 rich — reduces inflammation, supports skin, hormones and brain.',ru:'Омега-3 снижают воспаление, улучшают кожу, гормоны и мозг.'} },
+  { keys:['fish','cod','tuna','hake','trout','рыба','треска','тунец','форель','хек'], score:5, kcal:110, name:{en:'Fish',ru:'Рыба'}, label:{en:'lean protein',ru:'нежирный белок'}, msg:{en:'Easiest protein to digest. Ideal for evenings.',ru:'Самый лёгкий белок для пищеварения. Идеален вечером.'} },
+  { keys:['egg','eggs','яйцо','яйца'], score:5, kcal:70, name:{en:'Eggs',ru:'Яйца'}, label:{en:'complete protein',ru:'полноценный белок'}, msg:{en:'Complete protein with all essential amino acids. Easy to digest and versatile.',ru:'Полноценный белок со всеми аминокислотами. Легко усваивается.'} },
+  { keys:['cottage cheese','творог'], score:5, kcal:100, name:{en:'Cottage cheese',ru:'Творог'}, label:{en:'protein',ru:'белок'}, msg:{en:'High protein, probiotic calcium source. Great for bones and gut.',ru:'Много белка, пробиотики и кальций. Хорошо для костей и кишечника.'} },
+  { keys:['kefir','кефир'], score:5, kcal:80, name:{en:'Kefir',ru:'Кефир'}, label:{en:'probiotic',ru:'пробиотик'}, msg:{en:'One of the best probiotic sources — heals gut lining and supports immunity.',ru:'Один из лучших пробиотиков — восстанавливает слизистую и укрепляет иммунитет.'} },
+  { keys:['greek yogurt','йогурт','yogurt'], score:4, kcal:100, name:{en:'Yogurt',ru:'Йогурт'}, label:{en:'probiotic',ru:'пробиотик'}, msg:{en:'Good probiotics. Choose plain, unsweetened — flavoured versions are mostly sugar.',ru:'Хорошие пробиотики. Выбирайте натуральный без сахара — в ароматизированных много сахара.'} },
+  { keys:['beef','говядина'], score:3, kcal:215, name:{en:'Beef',ru:'Говядина'}, label:{en:'protein',ru:'белок'}, msg:{en:'Good iron source. Choose lean cuts and limit to 2–3× per week.',ru:'Хороший источник железа. Постные куски, не чаще 2–3 раз в неделю.'} },
+  { keys:['pork','свинина'], score:2, kcal:250, name:{en:'Pork',ru:'Свинина'}, label:{en:'protein',ru:'белок'}, msg:{en:'Higher in saturated fat. Lean pork occasionally is okay, but not daily.',ru:'Больше насыщенного жира. Постная свинина иногда допустима, но не каждый день.'} },
+  { keys:['sausage','колбаса','hot dog','сосиска','salami','салями','бекон','bacon'], score:0, kcal:150, name:{en:'Processed meat',ru:'Переработанное мясо'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'WHO classifies processed meats as carcinogenic. High in sodium, preservatives and bad fats.',ru:'ВОЗ классифицирует переработанное мясо как канцерогенное. Много соли, консервантов и вредных жиров.'} },
   // VEGETABLES
-  { keys:['broccoli','брокколи'], score:5, name:{en:'Broccoli',ru:'Брокколи'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Anti-inflammatory powerhouse. Steamed broccoli contains sulforaphane — a gut healer.',ru:'Мощное противовоспалительное. На пару содержит сульфорафан — исцеляет кишечник.'} },
-  { keys:['spinach','шпинат'], score:5, name:{en:'Spinach',ru:'Шпинат'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Iron and magnesium for energy and muscle relaxation. Great for evening meals.',ru:'Железо и магний для энергии и расслабления мышц. Отлично вечером.'} },
-  { keys:['cucumber','огурец'], score:5, name:{en:'Cucumber',ru:'Огурец'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'96% water — excellent for hydration and reducing bloating.',ru:'96% воды — отлично для гидратации и уменьшения отёков.'} },
-  { keys:['tomato','помидор','черри'], score:5, name:{en:'Tomato',ru:'Помидор'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Rich in lycopene (especially cooked) — anti-inflammatory and heart-protective.',ru:'Богат ликопином (особенно варёный) — противовоспалительный, защищает сердце.'} },
-  { keys:['carrot','морковь'], score:5, name:{en:'Carrot',ru:'Морковь'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Beta-carotene for skin and immunity. Cooked carrots are easier to digest.',ru:'Бета-каротин для кожи и иммунитета. Варёная легче усваивается.'} },
-  { keys:['zucchini','кабачок'], score:5, name:{en:'Zucchini',ru:'Кабачок'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Low-calorie, anti-inflammatory, very gentle on digestion.',ru:'Мало калорий, противовоспалительный, очень мягкий для пищеварения.'} },
-  { keys:['bell pepper','перец болгарский','sweet pepper'], score:5, name:{en:'Bell pepper',ru:'Болгарский перец'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'More vitamin C than oranges — boosts collagen and immunity.',ru:'Больше витамина C, чем в апельсине — стимулирует коллаген и иммунитет.'} },
-  { keys:['cauliflower','цветная капуста'], score:5, name:{en:'Cauliflower',ru:'Цветная капуста'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Rich in choline for brain health. Steam for best digestion.',ru:'Много холина для мозга. Лучше на пару для пищеварения.'} },
-  { keys:['cabbage','капуста'], score:4, name:{en:'Cabbage',ru:'Капуста'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Fermented (sauerkraut) is a natural probiotic. Raw cabbage can bloat — cook it.',ru:'Квашеная — натуральный пробиотик. Сырая может вздувать — лучше тушить.'} },
-  { keys:['arugula','руккола'], score:5, name:{en:'Arugula',ru:'Руккола'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Nitrates improve blood flow and energy levels.',ru:'Нитраты улучшают кровоток и уровень энергии.'} },
-  { keys:['asparagus','спаржа'], score:5, name:{en:'Asparagus',ru:'Спаржа'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Natural diuretic — reduces water retention. Rich in folate.',ru:'Природный диуретик — убирает отёки. Богата фолиевой кислотой.'} },
-  { keys:['beet','свёкла'], score:4, name:{en:'Beet',ru:'Свёкла'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Natural nitrates boost blood flow and stamina.',ru:'Природные нитраты улучшают кровоток и выносливость.'} },
-  { keys:['sweet potato','батат'], score:4, name:{en:'Sweet potato',ru:'Батат'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'Feeds beneficial gut bacteria and rich in beta-carotene.',ru:'Питает полезные бактерии кишечника и богат бета-каротином.'} },
-  { keys:['lentil','lentils','чечевица'], score:5, name:{en:'Lentils',ru:'Чечевица'}, label:{en:'legume protein',ru:'бобовый белок'}, msg:{en:'Plant protein with iron and fiber — stabilises blood sugar all afternoon.',ru:'Растительный белок с железом и клетчаткой — стабилизирует сахар надолго.'} },
-  { keys:['chickpea','нут'], score:4, name:{en:'Chickpeas',ru:'Нут'}, label:{en:'legume',ru:'бобовые'}, msg:{en:'Great plant protein. Soak and cook well to avoid gas.',ru:'Отличный растительный белок. Хорошо замачивайте во избежание газообразования.'} },
-  { keys:['green beans','стручковая фасоль'], score:5, name:{en:'Green beans',ru:'Стручковая фасоль'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Gentle fiber — great for bowel regularity.',ru:'Мягкая клетчатка — отлично для регулярного стула.'} },
+  { keys:['broccoli','брокколи'], score:5, kcal:50, name:{en:'Broccoli',ru:'Брокколи'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Anti-inflammatory powerhouse. Steamed broccoli contains sulforaphane — a gut healer.',ru:'Мощное противовоспалительное. На пару содержит сульфорафан — исцеляет кишечник.'} },
+  { keys:['spinach','шпинат'], score:5, kcal:35, name:{en:'Spinach',ru:'Шпинат'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Iron and magnesium for energy and muscle relaxation. Great for evening meals.',ru:'Железо и магний для энергии и расслабления мышц. Отлично вечером.'} },
+  { keys:['cucumber','огурец'], score:5, kcal:20, name:{en:'Cucumber',ru:'Огурец'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'96% water — excellent for hydration and reducing bloating.',ru:'96% воды — отлично для гидратации и уменьшения отёков.'} },
+  { keys:['tomato','помидор','черри'], score:5, kcal:28, name:{en:'Tomato',ru:'Помидор'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Rich in lycopene (especially cooked) — anti-inflammatory and heart-protective.',ru:'Богат ликопином (особенно варёный) — противовоспалительный, защищает сердце.'} },
+  { keys:['carrot','морковь'], score:5, kcal:60, name:{en:'Carrot',ru:'Морковь'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Beta-carotene for skin and immunity. Cooked carrots are easier to digest.',ru:'Бета-каротин для кожи и иммунитета. Варёная легче усваивается.'} },
+  { keys:['zucchini','кабачок'], score:5, kcal:25, name:{en:'Zucchini',ru:'Кабачок'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Low-calorie, anti-inflammatory, very gentle on digestion.',ru:'Мало калорий, противовоспалительный, очень мягкий для пищеварения.'} },
+  { keys:['bell pepper','перец болгарский','sweet pepper'], score:5, kcal:45, name:{en:'Bell pepper',ru:'Болгарский перец'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'More vitamin C than oranges — boosts collagen and immunity.',ru:'Больше витамина C, чем в апельсине — стимулирует коллаген и иммунитет.'} },
+  { keys:['cauliflower','цветная капуста'], score:5, kcal:45, name:{en:'Cauliflower',ru:'Цветная капуста'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Rich in choline for brain health. Steam for best digestion.',ru:'Много холина для мозга. Лучше на пару для пищеварения.'} },
+  { keys:['cabbage','капуста'], score:4, kcal:38, name:{en:'Cabbage',ru:'Капуста'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Fermented (sauerkraut) is a natural probiotic. Raw cabbage can bloat — cook it.',ru:'Квашеная — натуральный пробиотик. Сырая может вздувать — лучше тушить.'} },
+  { keys:['arugula','руккола'], score:5, kcal:10, name:{en:'Arugula',ru:'Руккола'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Nitrates improve blood flow and energy levels.',ru:'Нитраты улучшают кровоток и уровень энергии.'} },
+  { keys:['asparagus','спаржа'], score:5, kcal:25, name:{en:'Asparagus',ru:'Спаржа'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Natural diuretic — reduces water retention. Rich in folate.',ru:'Природный диуретик — убирает отёки. Богата фолиевой кислотой.'} },
+  { keys:['beet','свёкла'], score:4, kcal:43, name:{en:'Beet',ru:'Свёкла'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Natural nitrates boost blood flow and stamina.',ru:'Природные нитраты улучшают кровоток и выносливость.'} },
+  { keys:['sweet potato','батат'], score:4, kcal:86, name:{en:'Sweet potato',ru:'Батат'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'Feeds beneficial gut bacteria and rich in beta-carotene.',ru:'Питает полезные бактерии кишечника и богат бета-каротином.'} },
+  { keys:['lentil','lentils','чечевица'], score:5, kcal:200, name:{en:'Lentils',ru:'Чечевица'}, label:{en:'legume protein',ru:'бобовый белок'}, msg:{en:'Plant protein with iron and fiber — stabilises blood sugar all afternoon.',ru:'Растительный белок с железом и клетчаткой — стабилизирует сахар надолго.'} },
+  { keys:['chickpea','нут'], score:4, kcal:164, name:{en:'Chickpeas',ru:'Нут'}, label:{en:'legume',ru:'бобовые'}, msg:{en:'Great plant protein. Soak and cook well to avoid gas.',ru:'Отличный растительный белок. Хорошо замачивайте во избежание газообразования.'} },
+  { keys:['green beans','стручковая фасоль'], score:5, kcal:37, name:{en:'Green beans',ru:'Стручковая фасоль'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Gentle fiber — great for bowel regularity.',ru:'Мягкая клетчатка — отлично для регулярного стула.'} },
   // GRAINS
-  { keys:['buckwheat','гречка'], score:5, name:{en:'Buckwheat',ru:'Гречка'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'Complete protein + magnesium. Gently stimulates bowel movement.',ru:'Полноценный белок + магний. Мягко стимулирует кишечник.'} },
-  { keys:['quinoa','киноа'], score:5, name:{en:'Quinoa',ru:'Киноа'}, label:{en:'complete protein carb',ru:'полноценный белок + углевод'}, msg:{en:'Contains all 9 essential amino acids — rare for a grain.',ru:'Все 9 незаменимых аминокислот — редкость для злака.'} },
-  { keys:['oat','oats','oatmeal','овсянка','овёс'], score:5, name:{en:'Oats',ru:'Овсянка'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'Beta-glucan feeds good gut bacteria and lowers cholesterol.',ru:'Бета-глюкан питает полезные бактерии и снижает холестерин.'} },
-  { keys:['bulgur','булгур'], score:4, name:{en:'Bulgur',ru:'Булгур'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'Whole grain, high in fiber. Good rice alternative.',ru:'Цельное зерно с высоким содержанием клетчатки. Хорошая альтернатива рису.'} },
-  { keys:['brown rice','бурый рис'], score:4, name:{en:'Brown rice',ru:'Бурый рис'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'More fiber and magnesium than white rice, slower glucose release.',ru:'Больше клетчатки и магния, чем в белом рисе, медленнее поднимает сахар.'} },
-  { keys:['white rice','белый рис','рис'], score:3, name:{en:'White rice',ru:'Белый рис'}, label:{en:'refined carb',ru:'рафинированный углевод'}, msg:{en:'Okay occasionally. Prefer buckwheat, quinoa, or brown rice for more nutrients.',ru:'Иногда можно. Предпочтите гречку, киноа или бурый рис — больше пользы.'} },
-  { keys:['rye bread','ржаной хлеб'], score:4, name:{en:'Rye bread',ru:'Ржаной хлеб'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'Slower glucose release than white bread. Good fiber source.',ru:'Медленнее поднимает сахар, чем белый хлеб. Хороший источник клетчатки.'} },
-  { keys:['crispbread','хлебец','хлебцы'], score:4, name:{en:'Crispbread',ru:'Хлебцы'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'Light and fiber-rich — a great swap for regular bread.',ru:'Лёгкие и богатые клетчаткой — отличная замена хлебу.'} },
-  { keys:['white bread','белый хлеб','хлеб'], score:2, name:{en:'White bread',ru:'Белый хлеб'}, label:{en:'refined carb',ru:'рафинированный углевод'}, msg:{en:'Spikes blood sugar quickly. Swap for rye or sourdough.',ru:'Быстро поднимает сахар. Замените ржаным или хлебом на закваске.'} },
-  { keys:['pasta','макароны'], score:2, name:{en:'Pasta',ru:'Макароны'}, label:{en:'refined carb',ru:'рафинированный углевод'}, msg:{en:'Little nutrition per calorie. Choose wholegrain or reduce portions.',ru:'Мало пользы на калорию. Выбирайте цельнозерновые или уменьшайте порцию.'} },
+  { keys:['buckwheat','гречка'], score:5, kcal:235, name:{en:'Buckwheat',ru:'Гречка'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'Complete protein + magnesium. Gently stimulates bowel movement.',ru:'Полноценный белок + магний. Мягко стимулирует кишечник.'} },
+  { keys:['quinoa','киноа'], score:5, kcal:220, name:{en:'Quinoa',ru:'Киноа'}, label:{en:'complete protein carb',ru:'полноценный белок + углевод'}, msg:{en:'Contains all 9 essential amino acids — rare for a grain.',ru:'Все 9 незаменимых аминокислот — редкость для злака.'} },
+  { keys:['oat','oats','oatmeal','овсянка','овёс'], score:5, kcal:340, name:{en:'Oats',ru:'Овсянка'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'Beta-glucan feeds good gut bacteria and lowers cholesterol.',ru:'Бета-глюкан питает полезные бактерии и снижает холестерин.'} },
+  { keys:['bulgur','булгур'], score:4, kcal:210, name:{en:'Bulgur',ru:'Булгур'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'Whole grain, high in fiber. Good rice alternative.',ru:'Цельное зерно с высоким содержанием клетчатки. Хорошая альтернатива рису.'} },
+  { keys:['brown rice','бурый рис'], score:4, kcal:215, name:{en:'Brown rice',ru:'Бурый рис'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'More fiber and magnesium than white rice, slower glucose release.',ru:'Больше клетчатки и магния, чем в белом рисе, медленнее поднимает сахар.'} },
+  { keys:['white rice','белый рис','рис'], score:3, kcal:170, name:{en:'White rice',ru:'Белый рис'}, label:{en:'refined carb',ru:'рафинированный углевод'}, msg:{en:'Okay occasionally. Prefer buckwheat, quinoa, or brown rice for more nutrients.',ru:'Иногда можно. Предпочтите гречку, киноа или бурый рис — больше пользы.'} },
+  { keys:['rye bread','ржаной хлеб'], score:4, kcal:85, name:{en:'Rye bread',ru:'Ржаной хлеб'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'Slower glucose release than white bread. Good fiber source.',ru:'Медленнее поднимает сахар, чем белый хлеб. Хороший источник клетчатки.'} },
+  { keys:['crispbread','хлебец','хлебцы'], score:4, kcal:50, name:{en:'Crispbread',ru:'Хлебцы'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'Light and fiber-rich — a great swap for regular bread.',ru:'Лёгкие и богатые клетчаткой — отличная замена хлебу.'} },
+  { keys:['white bread','белый хлеб','хлеб'], score:2, kcal:80, name:{en:'White bread',ru:'Белый хлеб'}, label:{en:'refined carb',ru:'рафинированный углевод'}, msg:{en:'Spikes blood sugar quickly. Swap for rye or sourdough.',ru:'Быстро поднимает сахар. Замените ржаным или хлебом на закваске.'} },
+  { keys:['pasta','макароны'], score:2, kcal:350, name:{en:'Pasta',ru:'Макароны'}, label:{en:'refined carb',ru:'рафинированный углевод'}, msg:{en:'Little nutrition per calorie. Choose wholegrain or reduce portions.',ru:'Мало пользы на калорию. Выбирайте цельнозерновые или уменьшайте порцию.'} },
   // FRUITS
-  { keys:['apple','яблоко'], score:4, name:{en:'Apple',ru:'Яблоко'}, label:{en:'fruit',ru:'фрукт'}, msg:{en:'Pectin feeds good gut bacteria. Eat with skin for maximum fiber.',ru:'Пектин питает полезные бактерии. Ешьте с кожурой для максимума клетчатки.'} },
-  { keys:['pear','груша'], score:4, name:{en:'Pear',ru:'Груша'}, label:{en:'fruit',ru:'фрукт'}, msg:{en:'Sorbitol is a gentle natural laxative — good for bowel regularity.',ru:'Сорбитол — мягкое природное слабительное, хорошо для регулярности стула.'} },
-  { keys:['berries','berry','blueberry','strawberry','raspberry','ягоды','черника','клубника','малина','смородина'], score:5, name:{en:'Berries',ru:'Ягоды'}, label:{en:'fruit',ru:'фрукт'}, msg:{en:'Lowest sugar, highest antioxidants of all fruits. Best fruit choice.',ru:'Меньше всего сахара и больше антиоксидантов из всех фруктов. Лучший выбор.'} },
-  { keys:['banana','банан'], score:3, name:{en:'Banana',ru:'Банан'}, label:{en:'fruit',ru:'фрукт'}, msg:{en:'Good potassium and serotonin precursors. Higher sugar — best before exercise.',ru:'Калий и предшественники серотонина. Больше сахара — лучше до физической активности.'} },
-  { keys:['orange','апельсин','mandarin','tangerine','мандарин'], score:4, name:{en:'Citrus',ru:'Цитрус'}, label:{en:'fruit',ru:'фрукт'}, msg:{en:'Vitamin C boosts collagen and immunity. Eat whole — not as juice.',ru:'Витамин C для коллагена и иммунитета. Ешьте целиком, не в виде сока.'} },
-  { keys:['kiwi','киви'], score:5, name:{en:'Kiwi',ru:'Киви'}, label:{en:'fruit',ru:'фрукт'}, msg:{en:'Vitamin C + digestive enzymes + serotonin. Eating one before bed improves sleep.',ru:'Витамин C + пищеварительные ферменты + серотонин. Перед сном улучшает сон.'} },
-  { keys:['avocado','авокадо'], score:5, name:{en:'Avocado',ru:'Авокадо'}, label:{en:'healthy fat',ru:'полезный жир'}, msg:{en:'Monounsaturated fats reduce inflammation. Potassium reduces water retention.',ru:'Мононенасыщенные жиры снижают воспаление. Калий убирает отёки.'} },
-  { keys:['dried fruit','prune','чернослив','date','финик','raisin','изюм','dried apricot','курага'], score:2, name:{en:'Dried fruit',ru:'Сухофрукты'}, label:{en:'high sugar',ru:'много сахара'}, msg:{en:'Very concentrated sugar — treat like candy. Max 2–3 pieces per day.',ru:'Очень концентрированный сахар — как конфеты. Максимум 2–3 штуки в день.'} },
+  { keys:['apple','яблоко'], score:4, kcal:80, name:{en:'Apple',ru:'Яблоко'}, label:{en:'fruit',ru:'фрукт'}, msg:{en:'Pectin feeds good gut bacteria. Eat with skin for maximum fiber.',ru:'Пектин питает полезные бактерии. Ешьте с кожурой для максимума клетчатки.'} },
+  { keys:['pear','груша'], score:4, kcal:100, name:{en:'Pear',ru:'Груша'}, label:{en:'fruit',ru:'фрукт'}, msg:{en:'Sorbitol is a gentle natural laxative — good for bowel regularity.',ru:'Сорбитол — мягкое природное слабительное, хорошо для регулярности стула.'} },
+  { keys:['berries','berry','blueberry','strawberry','raspberry','ягоды','черника','клубника','малина','смородина'], score:5, kcal:35, name:{en:'Berries',ru:'Ягоды'}, label:{en:'fruit',ru:'фрукт'}, msg:{en:'Lowest sugar, highest antioxidants of all fruits. Best fruit choice.',ru:'Меньше всего сахара и больше антиоксидантов из всех фруктов. Лучший выбор.'} },
+  { keys:['banana','банан'], score:3, kcal:105, name:{en:'Banana',ru:'Банан'}, label:{en:'fruit',ru:'фрукт'}, msg:{en:'Good potassium and serotonin precursors. Higher sugar — best before exercise.',ru:'Калий и предшественники серотонина. Больше сахара — лучше до физической активности.'} },
+  { keys:['orange','апельсин','mandarin','tangerine','мандарин'], score:4, kcal:60, name:{en:'Citrus',ru:'Цитрус'}, label:{en:'fruit',ru:'фрукт'}, msg:{en:'Vitamin C boosts collagen and immunity. Eat whole — not as juice.',ru:'Витамин C для коллагена и иммунитета. Ешьте целиком, не в виде сока.'} },
+  { keys:['kiwi','киви'], score:5, kcal:42, name:{en:'Kiwi',ru:'Киви'}, label:{en:'fruit',ru:'фрукт'}, msg:{en:'Vitamin C + digestive enzymes + serotonin. Eating one before bed improves sleep.',ru:'Витамин C + пищеварительные ферменты + серотонин. Перед сном улучшает сон.'} },
+  { keys:['avocado','авокадо'], score:5, kcal:120, name:{en:'Avocado',ru:'Авокадо'}, label:{en:'healthy fat',ru:'полезный жир'}, msg:{en:'Monounsaturated fats reduce inflammation. Potassium reduces water retention.',ru:'Мононенасыщенные жиры снижают воспаление. Калий убирает отёки.'} },
+  { keys:['dried fruit','prune','чернослив','date','финик','raisin','изюм','dried apricot','курага'], score:2, kcal:75, name:{en:'Dried fruit',ru:'Сухофрукты'}, label:{en:'high sugar',ru:'много сахара'}, msg:{en:'Very concentrated sugar — treat like candy. Max 2–3 pieces per day.',ru:'Очень концентрированный сахар — как конфеты. Максимум 2–3 штуки в день.'} },
   // FATS, NUTS, SEEDS
-  { keys:['olive oil','оливковое масло'], score:5, name:{en:'Olive oil',ru:'Оливковое масло'}, label:{en:'healthy fat',ru:'полезный жир'}, msg:{en:'The gold standard fat. Anti-inflammatory and heart-protective.',ru:'Золотой стандарт жиров. Противовоспалительное, защищает сердце.'} },
-  { keys:['almond','almonds','миндаль'], score:4, name:{en:'Almonds',ru:'Миндаль'}, label:{en:'nut',ru:'орех'}, msg:{en:'Soak overnight to remove phytic acid and maximise magnesium absorption.',ru:'Замачивайте на ночь — убирает фитиновую кислоту и улучшает усвоение магния.'} },
-  { keys:['walnut','walnuts','грецкий орех','грецкие орехи'], score:4, name:{en:'Walnuts',ru:'Грецкие орехи'}, label:{en:'nut',ru:'орех'}, msg:{en:'Highest omega-3 among nuts. Great for brain and reducing inflammation.',ru:'Больше всего омега-3 среди орехов. Хорошо для мозга и снижения воспаления.'} },
-  { keys:['chia','чиа'], score:5, name:{en:'Chia seeds',ru:'Семена чиа'}, label:{en:'seed',ru:'семена'}, msg:{en:'Omega-3, fiber, and protein in one. Expand in stomach — lasting fullness.',ru:'Омега-3, клетчатка и белок в одном. Разбухают в желудке — долгое насыщение.'} },
-  { keys:['pumpkin seed','тыквенные семечки'], score:4, name:{en:'Pumpkin seeds',ru:'Тыквенные семечки'}, label:{en:'seed',ru:'семена'}, msg:{en:'High in zinc for skin and immunity, also rich in magnesium.',ru:'Много цинка для кожи и иммунитета, богаты магнием.'} },
-  { keys:['butter','сливочное масло'], score:2, name:{en:'Butter',ru:'Сливочное масло'}, label:{en:'saturated fat',ru:'насыщенный жир'}, msg:{en:'Use sparingly. Olive oil is a healthier fat for cooking.',ru:'Используйте понемногу. Оливковое масло — более полезный жир.'} },
-  { keys:['cheese','сыр'], score:2, name:{en:'Cheese',ru:'Сыр'}, label:{en:'saturated fat',ru:'насыщенный жир'}, msg:{en:'High saturated fat and sodium. A small amount (30g) a few times a week is fine.',ru:'Много насыщенного жира и соли. Небольшое количество (30г) пару раз в неделю — нормально.'} },
+  { keys:['olive oil','оливковое масло'], score:5, kcal:40, name:{en:'Olive oil',ru:'Оливковое масло'}, label:{en:'healthy fat',ru:'полезный жир'}, msg:{en:'The gold standard fat. Anti-inflammatory and heart-protective.',ru:'Золотой стандарт жиров. Противовоспалительное, защищает сердце.'} },
+  { keys:['almond','almonds','миндаль'], score:4, kcal:100, name:{en:'Almonds',ru:'Миндаль'}, label:{en:'nut',ru:'орех'}, msg:{en:'Soak overnight to remove phytic acid and maximise magnesium absorption.',ru:'Замачивайте на ночь — убирает фитиновую кислоту и улучшает усвоение магния.'} },
+  { keys:['walnut','walnuts','грецкий орех','грецкие орехи'], score:4, kcal:100, name:{en:'Walnuts',ru:'Грецкие орехи'}, label:{en:'nut',ru:'орех'}, msg:{en:'Highest omega-3 among nuts. Great for brain and reducing inflammation.',ru:'Больше всего омега-3 среди орехов. Хорошо для мозга и снижения воспаления.'} },
+  { keys:['chia','чиа'], score:5, kcal:50, name:{en:'Chia seeds',ru:'Семена чиа'}, label:{en:'seed',ru:'семена'}, msg:{en:'Omega-3, fiber, and protein in one. Expand in stomach — lasting fullness.',ru:'Омега-3, клетчатка и белок в одном. Разбухают в желудке — долгое насыщение.'} },
+  { keys:['pumpkin seed','тыквенные семечки'], score:4, kcal:30, name:{en:'Pumpkin seeds',ru:'Тыквенные семечки'}, label:{en:'seed',ru:'семена'}, msg:{en:'High in zinc for skin and immunity, also rich in magnesium.',ru:'Много цинка для кожи и иммунитета, богаты магнием.'} },
+  { keys:['butter','сливочное масло'], score:2, kcal:35, name:{en:'Butter',ru:'Сливочное масло'}, label:{en:'saturated fat',ru:'насыщенный жир'}, msg:{en:'Use sparingly. Olive oil is a healthier fat for cooking.',ru:'Используйте понемногу. Оливковое масло — более полезный жир.'} },
+  { keys:['cheese','сыр'], score:2, kcal:100, name:{en:'Cheese',ru:'Сыр'}, label:{en:'saturated fat',ru:'насыщенный жир'}, msg:{en:'High saturated fat and sodium. A small amount (30g) a few times a week is fine.',ru:'Много насыщенного жира и соли. Небольшое количество (30г) пару раз в неделю — нормально.'} },
   // DRINKS
-  { keys:['water','вода'], score:5, name:{en:'Water',ru:'Вода'}, label:{en:'hydration',ru:'гидратация'}, msg:{en:'Essential for digestion, energy, skin and detox. Aim for 1.5–2L daily.',ru:'Необходима для пищеварения, энергии, кожи и детокса. Цель — 1.5–2л в день.'} },
-  { keys:['green tea','зелёный чай'], score:5, name:{en:'Green tea',ru:'Зелёный чай'}, label:{en:'antioxidant',ru:'антиоксидант'}, msg:{en:'EGCG antioxidants support fat metabolism and protect cells.',ru:'Антиоксиданты EGCG поддерживают жировой обмен и защищают клетки.'} },
-  { keys:['herbal tea','травяной чай','chamomile','ромашка'], score:5, name:{en:'Herbal tea',ru:'Травяной чай'}, label:{en:'calming',ru:'успокаивающий'}, msg:{en:'Chamomile relaxes intestinal muscles — counts toward your daily water goal.',ru:'Ромашка расслабляет кишечник — считается в ежедневный объём воды.'} },
-  { keys:['coffee','кофе'], score:3, name:{en:'Coffee',ru:'Кофе'}, label:{en:'stimulant',ru:'стимулятор'}, msg:{en:'Rich in antioxidants if black. Limit to 1–2 cups before noon to protect sleep.',ru:'Много антиоксидантов в чёрном. До 2 чашек до полудня, чтобы не нарушать сон.'} },
-  { keys:['juice','сок'], score:1, name:{en:'Juice',ru:'Сок'}, label:{en:'sugar drink',ru:'сладкий напиток'}, msg:{en:'Even fresh juice lacks fiber and spikes blood sugar fast. Eat the whole fruit instead.',ru:'Даже свежий сок без клетчатки быстро поднимает сахар. Лучше есть фрукт целиком.'} },
-  { keys:['soda','cola','кола','газировка','sprite','fanta','лимонад'], score:0, name:{en:'Soda',ru:'Газировка'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'Empty calories, blood sugar spike, promotes inflammation and fat storage.',ru:'Пустые калории, скачок сахара, воспаление и накопление жира.'} },
-  { keys:['alcohol','wine','beer','vodka','вино','пиво','водка','алкоголь'], score:0, name:{en:'Alcohol',ru:'Алкоголь'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'Disrupts sleep, raises cortisol, and leads to belly fat storage.',ru:'Нарушает сон, повышает кортизол и способствует накоплению жира на животе.'} },
+  { keys:['water','вода'], score:5, kcal:0, name:{en:'Water',ru:'Вода'}, label:{en:'hydration',ru:'гидратация'}, msg:{en:'Essential for digestion, energy, skin and detox. Aim for 1.5–2L daily.',ru:'Необходима для пищеварения, энергии, кожи и детокса. Цель — 1.5–2л в день.'} },
+  { keys:['green tea','зелёный чай'], score:5, kcal:2, name:{en:'Green tea',ru:'Зелёный чай'}, label:{en:'antioxidant',ru:'антиоксидант'}, msg:{en:'EGCG antioxidants support fat metabolism and protect cells.',ru:'Антиоксиданты EGCG поддерживают жировой обмен и защищают клетки.'} },
+  { keys:['herbal tea','травяной чай','chamomile','ромашка'], score:5, kcal:2, name:{en:'Herbal tea',ru:'Травяной чай'}, label:{en:'calming',ru:'успокаивающий'}, msg:{en:'Chamomile relaxes intestinal muscles — counts toward your daily water goal.',ru:'Ромашка расслабляет кишечник — считается в ежедневный объём воды.'} },
+  { keys:['coffee','кофе'], score:3, kcal:5, name:{en:'Coffee',ru:'Кофе'}, label:{en:'stimulant',ru:'стимулятор'}, msg:{en:'Rich in antioxidants if black. Limit to 1–2 cups before noon to protect sleep.',ru:'Много антиоксидантов в чёрном. До 2 чашек до полудня, чтобы не нарушать сон.'} },
+  { keys:['juice','сок'], score:1, kcal:90, name:{en:'Juice',ru:'Сок'}, label:{en:'sugar drink',ru:'сладкий напиток'}, msg:{en:'Even fresh juice lacks fiber and spikes blood sugar fast. Eat the whole fruit instead.',ru:'Даже свежий сок без клетчатки быстро поднимает сахар. Лучше есть фрукт целиком.'} },
+  { keys:['soda','cola','кола','газировка','sprite','fanta','лимонад'], score:0, kcal:140, name:{en:'Soda',ru:'Газировка'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'Empty calories, blood sugar spike, promotes inflammation and fat storage.',ru:'Пустые калории, скачок сахара, воспаление и накопление жира.'} },
+  { keys:['alcohol','wine','beer','vodka','вино','пиво','водка','алкоголь'], score:0, kcal:120, name:{en:'Alcohol',ru:'Алкоголь'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'Disrupts sleep, raises cortisol, and leads to belly fat storage.',ru:'Нарушает сон, повышает кортизол и способствует накоплению жира на животе.'} },
   // SWEETS & PROCESSED
-  { keys:['honey','мёд'], score:3, name:{en:'Honey',ru:'Мёд'}, label:{en:'natural sugar',ru:'натуральный сахар'}, msg:{en:'Better than sugar — has enzymes and antimicrobial properties. Use sparingly.',ru:'Лучше сахара — есть ферменты. Но всё равно понемногу.'} },
-  { keys:['dark chocolate','тёмный шоколад'], score:3, name:{en:'Dark chocolate 70%+',ru:'Тёмный шоколад 70%+'}, label:{en:'treat',ru:'лакомство'}, msg:{en:'Antioxidants and magnesium — 1–2 small pieces a day is actually beneficial.',ru:'Антиоксиданты и магний — 1–2 маленьких кусочка в день на самом деле полезно.'} },
-  { keys:['chocolate','шоколад','candy','конфеты','sweets','сладкое'], score:1, name:{en:'Candy/Sweets',ru:'Конфеты/Сладкое'}, label:{en:'sugar',ru:'сахар'}, msg:{en:'Sugar spikes insulin, causes energy crashes and feeds harmful gut bacteria.',ru:'Сахар вызывает скачок инсулина, энергетические провалы и питает вредные бактерии.'} },
-  { keys:['sugar','сахар'], score:0, name:{en:'Sugar',ru:'Сахар'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'Feeds harmful gut bacteria, causes inflammation and disrupts hormone balance.',ru:'Питает вредные бактерии, вызывает воспаление и нарушает гормональный баланс.'} },
-  { keys:['cake','tort','торт','pastry','выпечка','bun','булочка','cookie','печенье','пирог'], score:0, name:{en:'Pastry/Cake',ru:'Выпечка/Торт'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'Sugar + refined flour + saturated fat — triple hit. Save for very special occasions.',ru:'Сахар + белая мука + насыщенный жир — тройной удар. Только для особых случаев.'} },
-  { keys:['chips','чипсы','crisps'], score:0, name:{en:'Chips',ru:'Чипсы'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'Fried, high sodium, artificial flavors — causes bloating and water retention.',ru:'Жареные, много соли, искусственные ароматизаторы — вздутие и отёки.'} },
-  { keys:['fast food','фастфуд','burger','бургер','pizza','пицца'], score:0, name:{en:'Fast food',ru:'Фастфуд'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'Processed oils, hidden sugars, excess sodium. Try to avoid for the full 5 weeks.',ru:'Обработанные масла, скрытый сахар, соль. Избегайте в течение 5 недель.'} },
-  { keys:['fried','жареное','жарила','жарил'], score:1, name:{en:'Fried food',ru:'Жареное'}, label:{en:'cooking method',ru:'способ готовки'}, msg:{en:'Frying creates acrylamide and trans fats. Same ingredients are far healthier grilled, steamed or baked.',ru:'Жарка создаёт акриламид и трансжиры. Те же продукты намного полезнее на гриле, пару или в духовке.'} },
+  { keys:['honey','мёд'], score:3, kcal:20, name:{en:'Honey',ru:'Мёд'}, label:{en:'natural sugar',ru:'натуральный сахар'}, msg:{en:'Better than sugar — has enzymes and antimicrobial properties. Use sparingly.',ru:'Лучше сахара — есть ферменты. Но всё равно понемногу.'} },
+  { keys:['dark chocolate','тёмный шоколад'], score:3, kcal:55, name:{en:'Dark chocolate 70%+',ru:'Тёмный шоколад 70%+'}, label:{en:'treat',ru:'лакомство'}, msg:{en:'Antioxidants and magnesium — 1–2 small pieces a day is actually beneficial.',ru:'Антиоксиданты и магний — 1–2 маленьких кусочка в день на самом деле полезно.'} },
+  { keys:['chocolate','шоколад','candy','конфеты','sweets','сладкое'], score:1, kcal:50, name:{en:'Candy/Sweets',ru:'Конфеты/Сладкое'}, label:{en:'sugar',ru:'сахар'}, msg:{en:'Sugar spikes insulin, causes energy crashes and feeds harmful gut bacteria.',ru:'Сахар вызывает скачок инсулина, энергетические провалы и питает вредные бактерии.'} },
+  { keys:['sugar','сахар'], score:0, kcal:16, name:{en:'Sugar',ru:'Сахар'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'Feeds harmful gut bacteria, causes inflammation and disrupts hormone balance.',ru:'Питает вредные бактерии, вызывает воспаление и нарушает гормональный баланс.'} },
+  { keys:['cake','tort','торт','pastry','выпечка','bun','булочка','cookie','печенье','пирог'], score:0, kcal:350, name:{en:'Pastry/Cake',ru:'Выпечка/Торт'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'Sugar + refined flour + saturated fat — triple hit. Save for very special occasions.',ru:'Сахар + белая мука + насыщенный жир — тройной удар. Только для особых случаев.'} },
+  { keys:['chips','чипсы','crisps'], score:0, kcal:150, name:{en:'Chips',ru:'Чипсы'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'Fried, high sodium, artificial flavors — causes bloating and water retention.',ru:'Жареные, много соли, искусственные ароматизаторы — вздутие и отёки.'} },
+  { keys:['fast food','фастфуд','burger','бургер','pizza','пицца'], score:0, kcal:450, name:{en:'Fast food',ru:'Фастфуд'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'Processed oils, hidden sugars, excess sodium. Try to avoid for the full 5 weeks.',ru:'Обработанные масла, скрытый сахар, соль. Избегайте в течение 5 недель.'} },
+  { keys:['fried','жареное','жарила','жарил'], score:1, kcal:200, name:{en:'Fried food',ru:'Жареное'}, label:{en:'cooking method',ru:'способ готовки'}, msg:{en:'Frying creates acrylamide and trans fats. Same ingredients are far healthier grilled, steamed or baked.',ru:'Жарка создаёт акриламид и трансжиры. Те же продукты намного полезнее на гриле, пару или в духовке.'} },
 ];
 
 // ─── Day Analysis Engine ──────────────────────────────────────────────────────
@@ -334,25 +334,39 @@ function TodayMeals({ lang:L, profile }) {
           </div>
 
           {/* Food chips */}
-          {meals[slot.key].length > 0 && (
-            <div style={{ display:'flex', flexWrap:'wrap', gap:'6px', marginBottom:'8px' }}>
-              {meals[slot.key].map(f => {
-                const text = f.text.toLowerCase();
-                let chipScore = null;
-                for (const food of FOOD_DB) {
-                  if (food.keys.some(k => text.includes(k.toLowerCase()))) { chipScore = food.score; break; }
-                }
-                const chipColor = chipScore === null ? '#9a8870' : chipScore >= 4 ? '#5a8a4a' : chipScore >= 2 ? '#b08030' : '#c05030';
-                return (
-                  <div key={f.id} style={{ display:'flex', alignItems:'center', gap:'4px', background:'rgba(255,255,255,0.75)', border:`1px solid ${slot.border}`, borderRadius:'20px', padding:'4px 10px 4px 8px' }}>
-                    <span style={{ width:'6px', height:'6px', borderRadius:'50%', background:chipColor, flexShrink:0 }} />
-                    <span style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', color:'#3a2e22' }}>{f.text}</span>
-                    <button onClick={() => removeFood(slot.key, f.id)} style={{ background:'none', border:'none', color:'#b0a090', cursor:'pointer', padding:'0 0 0 2px', fontSize:'13px', lineHeight:1 }}>×</button>
-                  </div>
-                );
-              })}
-            </div>
-          )}
+          {meals[slot.key].length > 0 && (() => {
+            let slotKcal = 0;
+            return (
+              <div style={{ marginBottom:'8px' }}>
+                <div style={{ display:'flex', flexWrap:'wrap', gap:'6px', marginBottom:'6px' }}>
+                  {meals[slot.key].map(f => {
+                    const text = f.text.toLowerCase();
+                    let chipScore = null, chipKcal = null;
+                    for (const food of FOOD_DB) {
+                      if (food.keys.some(k => text.includes(k.toLowerCase()))) {
+                        chipScore = food.score; chipKcal = food.kcal; break;
+                      }
+                    }
+                    if (chipKcal) slotKcal += chipKcal;
+                    const chipColor = chipScore === null ? '#9a8870' : chipScore >= 4 ? '#5a8a4a' : chipScore >= 2 ? '#b08030' : '#c05030';
+                    return (
+                      <div key={f.id} style={{ display:'flex', alignItems:'center', gap:'4px', background:'rgba(255,255,255,0.75)', border:`1px solid ${slot.border}`, borderRadius:'20px', padding:'4px 10px 4px 8px' }}>
+                        <span style={{ width:'6px', height:'6px', borderRadius:'50%', background:chipColor, flexShrink:0 }} />
+                        <span style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', color:'#3a2e22' }}>{f.text}</span>
+                        {chipKcal !== null && <span style={{ fontFamily:"'Inter',sans-serif", fontSize:'10px', color:'#9a8870' }}>~{chipKcal}</span>}
+                        <button onClick={() => removeFood(slot.key, f.id)} style={{ background:'none', border:'none', color:'#b0a090', cursor:'pointer', padding:'0 0 0 2px', fontSize:'13px', lineHeight:1 }}>×</button>
+                      </div>
+                    );
+                  })}
+                </div>
+                {slotKcal > 0 && (
+                  <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', color:'#8b7355', textAlign:'right' }}>
+                    {L==='en' ? `~${slotKcal} kcal` : `~${slotKcal} ккал`}
+                  </p>
+                )}
+              </div>
+            );
+          })()}
 
           {/* Input row */}
           <div style={{ display:'flex', gap:'6px' }}>
@@ -395,6 +409,45 @@ function TodayMeals({ lang:L, profile }) {
           </p>
         )}
       </div>
+
+      {/* Daily calorie total */}
+      {totalLogged > 0 && (() => {
+        const dayKcal = Object.values(meals).flat().reduce((sum, f) => {
+          const text = f.text.toLowerCase();
+          for (const food of FOOD_DB) {
+            if (food.keys.some(k => text.includes(k.toLowerCase()))) return sum + (food.kcal || 0);
+          }
+          return sum;
+        }, 0);
+        if (dayKcal === 0) return null;
+        const target = 1450; // midpoint of typical plan range
+        const pct = Math.min(100, Math.round((dayKcal / target) * 100));
+        const barColor = pct <= 80 ? '#5a8a4a' : pct <= 110 ? '#c4a030' : '#c05030';
+        return (
+          <div style={{ background:'#fff', border:'1px solid #ede8e2', borderRadius:'14px', padding:'12px 16px' }}>
+            <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'8px' }}>
+              <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', fontWeight:600, color:'#4a3825' }}>
+                🔥 {L==='en' ? 'Calories logged today' : 'Калории за сегодня'}
+              </p>
+              <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'13px', fontWeight:600, color:barColor }}>
+                ~{dayKcal} <span style={{ fontSize:'11px', color:'#9a8870', fontWeight:400 }}>/ ~{target}</span>
+              </p>
+            </div>
+            <div style={{ height:'8px', borderRadius:'4px', background:'#ede8e2', overflow:'hidden', marginBottom:'6px' }}>
+              <div style={{ height:'100%', width:`${pct}%`, background:barColor, borderRadius:'4px', transition:'width 0.5s ease' }} />
+            </div>
+            <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', color:'#9a8870' }}>
+              {L==='en'
+                ? pct <= 80  ? 'Still room for more — make sure you\'re eating enough.'
+                : pct <= 110 ? 'On track for the day 👍'
+                : 'Over your estimate — focus on vegetables and protein for the rest of the day.'
+                : pct <= 80  ? 'Ещё есть место — убедитесь, что едите достаточно.'
+                : pct <= 110 ? 'Всё идёт по плану 👍'
+                : 'Выше нормы — сосредоточьтесь на овощах и белке до конца дня.'}
+            </p>
+          </div>
+        );
+      })()}
 
       {/* Analysis */}
       {totalLogged === 0 ? (
