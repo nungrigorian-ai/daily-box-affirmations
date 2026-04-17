@@ -92,107 +92,8 @@ const PLAN_SLOTS = [
   { key:'dinner',     icon:'🌙', label:'Dinner',            labelRu:'Ужин',              water:false, bg:'#f4f0fa', border:'#b090d0' },
 ];
 
-// ─── Adaptive Meal Library ────────────────────────────────────────────────────
+// ─── Helpers ─────────────────────────────────────────────────────────────────
 
-const MEALS = {
-  breakfast: [
-    { id:'oat_porridge', emoji:'🥣', name:{en:'Oat Porridge & Banana',ru:'Овсянка с бананом'}, calories:365, protein:12, carbs:62, fat:8,
-      ingredients:{en:['½ cup rolled oats','1 cup oat or almond milk','1 ripe banana, sliced','½ tsp cinnamon','1 tsp honey'],ru:['½ стак. овсяных хлопьев','1 стак. молока','1 спелый банан','½ ч.л. корицы','1 ч.л. мёда']},
-      prep:{en:['Cook oats in milk 5 min, stirring often.','Stir in cinnamon and honey.','Top with banana. Serve warm.'],ru:['Варите хлопья в молоке 5 мин.','Добавьте корицу и мёд.','Сверху банан. Подавайте тёплым.']},
-      note:{en:'Oats feed good gut bacteria. Banana gives potassium to reduce water retention. Cinnamon warms digestion.',ru:'Овёс питает полезные бактерии. Банан даёт калий. Корица разогревает пищеварение.'} },
-    { id:'scrambled_eggs', emoji:'🍳', name:{en:'Soft Eggs & Sourdough',ru:'Яичница с хлебом'}, calories:310, protein:18, carbs:28, fat:13,
-      ingredients:{en:['2 eggs','1 slice sourdough toast','3–4 cucumber slices','Pinch sea salt','Drizzle olive oil'],ru:['2 яйца','1 ломтик хлеба','3–4 кружочка огурца','Щепотка соли','Капля оливкового масла']},
-      prep:{en:['Beat eggs. Cook low heat with olive oil.','Stir slowly for creamy texture.','Toast sourdough. Serve with cucumber.'],ru:['Взбейте яйца. Готовьте на слабом огне.','Медленно помешивайте.','Хлеб подрумяньте. Подавайте с огурцом.']},
-      note:{en:'Eggs are highly bioavailable protein. Sourdough fermentation reduces bloating vs regular bread.',ru:'Яйца — лёгкий белок. Закваска делает хлеб легче обычного — меньше вздутия.'} },
-    { id:'buckwheat_porridge', emoji:'🍚', name:{en:'Buckwheat & Soft-Boiled Egg',ru:'Гречка с яйцом'}, calories:340, protein:15, carbs:48, fat:9,
-      ingredients:{en:['½ cup raw buckwheat, rinsed','1 soft-boiled egg (7 min)','½ tsp butter','Sea salt'],ru:['½ стак. гречки','1 яйцо всмятку (7 мин)','½ ч.л. масла','Морская соль']},
-      prep:{en:['Cook buckwheat in 1 cup water 15 min.','Soft-boil egg 7 min, then cool water.','Add butter and salt. Serve warm.'],ru:['Варите гречку 15 мин.','Яйцо всмятку 7 мин.','Добавьте масло и соль.']},
-      note:{en:'Buckwheat gently stimulates bowel movement. Rich in magnesium for muscle tension relief.',ru:'Гречка мягко стимулирует кишечник. Богата магнием от напряжения мышц.'} },
-    { id:'chia_pudding', emoji:'🫙', name:{en:'Overnight Chia Pudding',ru:'Чиа-пудинг'}, calories:285, protein:12, carbs:32, fat:10,
-      ingredients:{en:['1 cup kefir or yogurt','2 tsp chia seeds','1 tsp pumpkin seeds','60g mixed berries','Prepare the night before'],ru:['1 стак. кефира или йогурта','2 ч.л. семян чиа','1 ч.л. тыквенных семечек','60г ягод','Готовить вечером']},
-      prep:{en:['Mix kefir with chia and pumpkin seeds.','Add berries. Stir well.','Refrigerate overnight. Serve cold.'],ru:['Смешайте кефир с чиа и семечками.','Добавьте ягоды. Перемешайте.','Охладите ночью. Подавайте холодным.']},
-      note:{en:'Chia seeds are omega-3 rich and provide lasting fullness. Probiotics from kefir support gut flora.',ru:'Чиа богаты омега-3 и дают длительное насыщение. Пробиотики кефира поддерживают микрофлору.'} },
-    { id:'detox_smoothie', emoji:'🍹', name:{en:'Detox Green Smoothie',ru:'Детокс-смузи'}, calories:195, protein:5, carbs:38, fat:3,
-      ingredients:{en:['½ kiwi','Handful fresh spinach or parsley','½ green apple, juiced','2 tsp chia seeds','200ml water'],ru:['½ киви','Горсть шпината или петрушки','½ зелёного яблока','2 ч.л. чиа','200мл воды']},
-      prep:{en:['Blend all ingredients until smooth.','Drink slowly, within 15 min of blending.'],ru:['Взбейте всё блендером.','Пейте медленно, в течение 15 мин.']},
-      note:{en:'Chlorophyll from greens alkalizes the body. Kiwi provides vitamin C and digestive enzymes. Best light start.',ru:'Хлорофилл из зелени ощелачивает организм. Киви даёт витамин C и ферменты. Лёгкий старт дня.'} },
-  ],
-  lunch: [
-    { id:'cod_rice_zucchini', emoji:'🐟', name:{en:'Baked Cod + Rice + Zucchini',ru:'Запечённая треска с рисом'}, calories:450, protein:38, carbs:48, fat:8,
-      ingredients:{en:['150g cod fillet','½ cup white rice (cooked)','1 medium zucchini, sliced','Lemon juice, dill, olive oil, sea salt'],ru:['150г трески','½ стак. риса','1 кабачок','Лимон, укроп, оливковое масло, соль']},
-      prep:{en:['Season cod with lemon, salt, dill. Bake 180°C for 15–18 min.','Sauté zucchini in olive oil 5–7 min.','Serve over rice, drizzle lemon.'],ru:['Треску с лимоном и укропом запечь 180°C 15–18 мин.','Кабачок обжарить 5–7 мин.','Подать с рисом.']},
-      note:{en:'White fish is the easiest protein to digest. Cooked zucchini is anti-inflammatory and low-FODMAP.',ru:'Белая рыба — самый лёгкий белок. Мягкий кабачок противовоспалителен и не вызывает газов.'} },
-    { id:'chicken_soup', emoji:'🍲', name:{en:'Chicken Vegetable Soup',ru:'Куриный овощной суп'}, calories:380, protein:28, carbs:38, fat:10,
-      ingredients:{en:['120g chicken breast','1 carrot diced','1 potato diced','½ onion','Dill, bay leaf, sea salt'],ru:['120г куриной грудки','1 морковь','1 картофель','½ луковицы','Укроп, лавровый лист, соль']},
-      prep:{en:['Simmer chicken 20 min. Remove and shred.','Add vegetables to broth. Cook 15 min.','Return chicken, add dill. Serve hot.'],ru:['Варите курицу 20 мин. Достаньте.','Добавьте овощи в бульон 15 мин.','Верните курицу, добавьте укроп.']},
-      note:{en:'Chicken broth heals the gut lining. Warm liquid supports natural bowel movement. Best on bloating days.',ru:'Бульон восстанавливает слизистую. Тёплая жидкость поддерживает перистальтику. Лучший выбор в дни вздутия.'} },
-    { id:'salmon_quinoa', emoji:'🍣', name:{en:'Poached Salmon + Quinoa + Roasted Pepper',ru:'Лосось с киноа и перцем'}, calories:520, protein:40, carbs:44, fat:16,
-      ingredients:{en:['150g salmon fillet','½ cup quinoa','1 bell pepper, roasted','Lemon, olive oil, dill'],ru:['150г лосося','½ стак. киноа','1 болгарский перец','Лимон, масло, укроп']},
-      prep:{en:['Poach salmon in salted water + lemon 10–12 min.','Cook quinoa: 1 part to 2 water, 15 min.','Roast bell pepper 200°C 20 min. Plate together.'],ru:['Лосось в подсоленной воде с лимоном 10–12 мин.','Киноа 1:2 воды, 15 мин.','Перец 200°C 20 мин. Подать вместе.']},
-      note:{en:'Salmon omega-3s reduce inflammation and directly support your nervous system. Quinoa contains all essential amino acids.',ru:'Омега-3 лосося снижают воспаление и поддерживают нервную систему. Киноа содержит все незаменимые аминокислоты.'} },
-    { id:'chicken_sweet_potato', emoji:'🍗', name:{en:'Chicken + Sweet Potato + Broccoli',ru:'Курица с бататом и брокколи'}, calories:480, protein:38, carbs:52, fat:9,
-      ingredients:{en:['150g chicken breast','1 medium sweet potato','1 cup broccoli florets','Olive oil, paprika, sea salt'],ru:['150г куриной грудки','1 батат','1 стак. брокколи','Оливковое масло, паприка, соль']},
-      prep:{en:['Season chicken, bake 180°C 20–22 min.','Bake sweet potato 200°C 30 min.','Steam broccoli 5–6 min. Drizzle olive oil.'],ru:['Курицу запечь 180°C 20–22 мин.','Батат 200°C 30 мин.','Брокколи на пару 5–6 мин.']},
-      note:{en:'Sweet potato feeds beneficial gut bacteria. Steamed broccoli contains sulforaphane — a potent gut anti-inflammatory.',ru:'Батат питает полезные бактерии. Брокколи на пару содержит сульфорафан — мощное противовоспалительное.'} },
-    { id:'turkey_patties', emoji:'🥩', name:{en:'Turkey Patties + Potato + Green Beans',ru:'Котлеты из индейки с картошкой'}, calories:490, protein:35, carbs:46, fat:14,
-      ingredients:{en:['150g ground turkey','1 egg for binding','1 medium potato','Handful green beans','Sea salt, herbs'],ru:['150г фарша индейки','1 яйцо','1 картофель','Горсть стручковой фасоли','Соль, зелень']},
-      prep:{en:['Mix turkey with egg, salt, herbs. Form patties.','Cook medium heat 4–5 min per side.','Boil potato, mash. Steam beans 5 min.'],ru:['Смешайте фарш с яйцом и зеленью.','Готовьте 4–5 мин с каждой стороны.','Пюре из картофеля. Фасоль на пару.']},
-      note:{en:'Ground turkey is gentle to digest. Mashed potato is one of the most gut-friendly carbs. Green beans provide gentle fiber.',ru:'Фарш легче расщепляется. Пюре — один из самых мягких углеводов. Фасоль даёт мягкую клетчатку.'} },
-  ],
-  dinner: [
-    { id:'steamed_tilapia', emoji:'🐠', name:{en:'Steamed Fish + Carrots + Rice',ru:'Рыба на пару с морковью'}, calories:330, protein:28, carbs:38, fat:6,
-      ingredients:{en:['120g white fish fillet','2 medium carrots, sliced','⅓ cup white rice','Lemon juice, dill, sea salt'],ru:['120г белой рыбы','2 моркови','⅓ стак. риса','Лимон, укроп, соль']},
-      prep:{en:['Steam fish over boiling water 8–10 min.','Steam carrots alongside 10–12 min.','Cook small portion of rice. Season with lemon and dill.'],ru:['Рыба на пару 8–10 мин.','Морковь рядом 10–12 мин.','Маленькая порция риса. Лимон и укроп.']},
-      note:{en:'The lightest dinner. Ideal after a heavier lunch. Carrots soothe the gut wall overnight.',ru:'Самый лёгкий ужин. Идеален после тяжёлого обеда. Морковь успокаивает кишечник ночью.'} },
-    { id:'turkey_buckwheat', emoji:'🥦', name:{en:'Turkey Breast + Zucchini + Buckwheat',ru:'Индейка с кабачком и гречкой'}, calories:360, protein:30, carbs:38, fat:8,
-      ingredients:{en:['120g turkey breast','1 zucchini, sliced','⅓ cup buckwheat','Olive oil, sea salt, herbs'],ru:['120г индейки','1 кабачок','⅓ стак. гречки','Масло, соль, зелень']},
-      prep:{en:['Cook turkey in salted water 15–18 min. Slice.','Steam or sauté zucchini 5 min.','Cook buckwheat in 2× water 15 min.'],ru:['Индейку отварить 15–18 мин.','Кабачок на пару или обжарить 5 мин.','Гречка 2× воды 15 мин.']},
-      note:{en:'Turkey tryptophan converts to serotonin — supports your nervous system and sleep. Buckwheat magnesium eases muscle tension.',ru:'Триптофан индейки → серотонин, поддерживает нервную систему и сон. Магний гречки снимает мышечное напряжение.'} },
-    { id:'soft_omelette', emoji:'🥚', name:{en:'Soft Omelette + Sautéed Spinach',ru:'Омлет со шпинатом'}, calories:295, protein:19, carbs:14, fat:18,
-      ingredients:{en:['2 eggs','2 tbsp oat milk','Handful baby spinach','Olive oil, sea salt'],ru:['2 яйца','2 ст.л. овсяного молока','Горсть шпината','Оливковое масло, соль']},
-      prep:{en:['Whisk eggs with milk and salt.','Cook in oiled pan low heat — fold gently.','Wilt spinach 1–2 min in same pan.'],ru:['Взбейте яйца с молоком и солью.','Готовьте на слабом огне — сложите аккуратно.','Шпинат в той же сковороде 1–2 мин.']},
-      note:{en:'Quick on low-energy evenings. Spinach provides iron and magnesium for muscle relief and sleep quality.',ru:'Быстро в вечера без сил. Шпинат даёт железо и магний для снятия напряжения и сна.'} },
-    { id:'light_broth_soup', emoji:'🥣', name:{en:'Light Chicken Broth Soup',ru:'Лёгкий куриный бульон'}, calories:220, protein:18, carbs:20, fat:6,
-      ingredients:{en:['80g cooked chicken, shredded','500ml light chicken broth','1 carrot','2–3 potato cubes','Fresh dill, sea salt'],ru:['80г варёной курицы','500мл бульона','1 морковь','2–3 кубика картофеля','Укроп, соль']},
-      prep:{en:['Heat broth. Add carrot and potato 12–15 min.','Add chicken. Heat through.','Finish with dill. No cream.'],ru:['Нагрейте бульон. Морковь и картофель 12–15 мин.','Добавьте курицу. Прогрейте.','Укроп. Без сливок.']},
-      note:{en:'Most restorative evening option. Broth electrolytes rebalance water retention overnight.',ru:'Самый восстанавливающий вечерний вариант. Электролиты восстанавливают водный баланс ночью.'} },
-    { id:'fish_stew', emoji:'🍛', name:{en:'White Fish Light Stew + Rice',ru:'Рагу из белой рыбы с рисом'}, calories:350, protein:32, carbs:40, fat:7,
-      ingredients:{en:['130g white fish (cod or hake)','1 tomato diced','1 carrot sliced','½ cup white rice','Olive oil, bay leaf, parsley'],ru:['130г белой рыбы','1 помидор','1 морковь','½ стак. риса','Масло, лавровый лист, петрушка']},
-      prep:{en:['Sauté carrot 3 min. Add tomato 3 min.','Add fish, bay leaf, 100ml water. Cover 10 min.','Season with salt and parsley. Serve over rice.'],ru:['Морковь 3 мин. Помидор ещё 3 мин.','Рыба, лавр, 100мл воды. Накрыть 10 мин.','Посолить, петрушка. Подать с рисом.']},
-      note:{en:'Cooked tomato is rich in lycopene — anti-inflammatory. Warming without being heavy. Perfect for cold or stressful days.',ru:'Варёный помидор богат ликопином. Согревает, не утяжеляя. Идеально в холодные или стрессовые дни.'} },
-  ],
-  snack: [
-    { id:'chamomile_rice_cakes', emoji:'🍵', name:{en:'Chamomile Tea + Rice Cakes',ru:'Ромашковый чай + хлебцы'}, calories:110, protein:2, carbs:22, fat:1,
-      ingredients:{en:['2 unsalted rice cakes','1 cup chamomile tea (no sugar)'],ru:['2 рисовых хлебца','1 чашка ромашкового чая (без сахара)']},
-      prep:{en:['Brew chamomile 5 min. Enjoy slowly.'],ru:['Заварите ромашку 5 мин. Пейте медленно.']},
-      note:{en:'Chamomile is clinically anti-spasmodic — relaxes intestinal muscles, reduces bloating and gas.',ru:'Ромашка клинически антиспазматична — расслабляет мышцы кишечника, снижает вздутие.'} },
-    { id:'banana', emoji:'🍌', name:{en:'Ripe Banana',ru:'Спелый банан'}, calories:105, protein:1, carbs:27, fat:0,
-      ingredients:{en:['1 ripe banana (brown spots = more digestible)'],ru:['1 спелый банан (с пятнами = более усвояемый)']},
-      prep:{en:['Eat as is. Always choose ripe — underripe causes bloating.'],ru:['Ешьте как есть. Только спелый — недозрелый вызывает вздутие.']},
-      note:{en:'Potassium counteracts sodium and reduces water retention. Provides serotonin precursors.',ru:'Калий нейтрализует натрий. Содержит предшественники серотонина.'} },
-    { id:'soaked_almonds', emoji:'🌰', name:{en:'12 Soaked Almonds',ru:'12 замоченных миндалин'}, calories:120, protein:4, carbs:4, fat:10,
-      ingredients:{en:['12 raw almonds','Soak in water overnight or 4+ hours'],ru:['12 сырых миндалин','Замочить на ночь или 4+ часа']},
-      prep:{en:['Drain soaked almonds. Optionally peel. Eat slowly.'],ru:['Слить воду. Очистить по желанию. Есть медленно.']},
-      note:{en:'Soaking removes phytic acid — dramatically improving magnesium absorption. Magnesium relieves neck and back muscle tension.',ru:'Замачивание убирает фитиновую кислоту — улучшает усвоение магния. Магний снимает напряжение мышц.'} },
-    { id:'soft_pear', emoji:'🍐', name:{en:'Soft Ripe Pear',ru:'Мягкая спелая груша'}, calories:85, protein:1, carbs:22, fat:0,
-      ingredients:{en:['1 ripe pear (soft to touch)'],ru:['1 спелая груша (мягкая)']},
-      prep:{en:['Eat ripe only. Warm in microwave 30 sec on sluggish days.'],ru:['Только спелую. Нагреть 30 сек при вялом пищеварении.']},
-      note:{en:'Pear contains sorbitol — a gentle natural laxative. Best snack on irregular bowel movement days.',ru:'Груша содержит сорбитол — мягкое слабительное. Лучший перекус при нерегулярном стуле.'} },
-  ],
-};
-
-const WEEK_ROTATION = [
-  { b:'scrambled_eggs',    l:'chicken_sweet_potato', d:'steamed_tilapia',  s:'banana' },          // Sun
-  { b:'oat_porridge',      l:'cod_rice_zucchini',    d:'turkey_buckwheat', s:'chamomile_rice_cakes' }, // Mon
-  { b:'scrambled_eggs',    l:'chicken_sweet_potato', d:'steamed_tilapia',  s:'banana' },          // Tue
-  { b:'buckwheat_porridge',l:'turkey_patties',       d:'fish_stew',        s:'soaked_almonds' },  // Wed
-  { b:'chia_pudding',      l:'salmon_quinoa',        d:'light_broth_soup', s:'soft_pear' },       // Thu
-  { b:'detox_smoothie',    l:'cod_rice_zucchini',    d:'soft_omelette',    s:'chamomile_rice_cakes' }, // Fri
-  { b:'oat_porridge',      l:'chicken_soup',         d:'turkey_buckwheat', s:'banana' },          // Sat
-];
-
-function getMeal(type, id) { return MEALS[type]?.find(m => m.id === id) || MEALS[type][0]; }
-function getAlts(type, id) { return MEALS[type].filter(m => m.id !== id).slice(0,3); }
 function todayKey() { return new Date().toISOString().split('T')[0]; }
 
 function calcTDEE({ weight=65, height=167, age=44, activityLevel='light' }) {
@@ -201,7 +102,6 @@ function calcTDEE({ weight=65, height=167, age=44, activityLevel='light' }) {
   return Math.round(bmr * (mult[activityLevel] || 1.375));
 }
 
-// Weight projection per phase (avg daily kcal from plan)
 const PHASE_KCAL = { 'Week 1':1380, 'Week 2':1430, 'Week 3':1470, 'Stabilization I':1560, 'Stabilization II':1650 };
 
 function getTodayDayIdx() {
@@ -209,109 +109,412 @@ function getTodayDayIdx() {
   return d === 0 ? 6 : d - 1;
 }
 
-// ─── Meal Detail Overlay ──────────────────────────────────────────────────────
+// ─── Food Knowledge Database ──────────────────────────────────────────────────
+// score: 5=excellent 4=good 3=okay 2=watch 1=limit 0=avoid
 
-function MealDetail({ type, mealId, lang:L, onClose, onSwap }) {
-  const meal = getMeal(type, mealId);
-  const alts  = getAlts(type, mealId);
-  const [showSwap, setShowSwap] = useState(false);
-  if (!meal) return null;
+const FOOD_DB = [
+  // PROTEINS
+  { keys:['chicken','грудка','курица'], score:5, name:{en:'Chicken',ru:'Курица'}, label:{en:'lean protein',ru:'нежирный белок'}, msg:{en:'Excellent lean protein — keeps you full and supports muscle without extra fat.',ru:'Отличный нежирный белок — насыщает и поддерживает мышцы без лишнего жира.'} },
+  { keys:['turkey','индейка'], score:5, name:{en:'Turkey',ru:'Индейка'}, label:{en:'lean protein',ru:'нежирный белок'}, msg:{en:'Tryptophan converts to serotonin — great for mood and sleep.',ru:'Триптофан → серотонин. Отлично для настроения и сна.'} },
+  { keys:['salmon','лосось'], score:5, name:{en:'Salmon',ru:'Лосось'}, label:{en:'omega-3 protein',ru:'омега-3 белок'}, msg:{en:'Omega-3 rich — reduces inflammation, supports skin, hormones and brain.',ru:'Омега-3 снижают воспаление, улучшают кожу, гормоны и мозг.'} },
+  { keys:['fish','cod','tuna','hake','trout','рыба','треска','тунец','форель','хек'], score:5, name:{en:'Fish',ru:'Рыба'}, label:{en:'lean protein',ru:'нежирный белок'}, msg:{en:'Easiest protein to digest. Ideal for evenings.',ru:'Самый лёгкий белок для пищеварения. Идеален вечером.'} },
+  { keys:['egg','eggs','яйцо','яйца'], score:5, name:{en:'Eggs',ru:'Яйца'}, label:{en:'complete protein',ru:'полноценный белок'}, msg:{en:'Complete protein with all essential amino acids. Easy to digest and versatile.',ru:'Полноценный белок со всеми аминокислотами. Легко усваивается.'} },
+  { keys:['cottage cheese','творог'], score:5, name:{en:'Cottage cheese',ru:'Творог'}, label:{en:'protein',ru:'белок'}, msg:{en:'High protein, probiotic calcium source. Great for bones and gut.',ru:'Много белка, пробиотики и кальций. Хорошо для костей и кишечника.'} },
+  { keys:['kefir','кефир'], score:5, name:{en:'Kefir',ru:'Кефир'}, label:{en:'probiotic',ru:'пробиотик'}, msg:{en:'One of the best probiotic sources — heals gut lining and supports immunity.',ru:'Один из лучших пробиотиков — восстанавливает слизистую и укрепляет иммунитет.'} },
+  { keys:['greek yogurt','йогурт','yogurt'], score:4, name:{en:'Yogurt',ru:'Йогурт'}, label:{en:'probiotic',ru:'пробиотик'}, msg:{en:'Good probiotics. Choose plain, unsweetened — flavoured versions are mostly sugar.',ru:'Хорошие пробиотики. Выбирайте натуральный без сахара — в ароматизированных много сахара.'} },
+  { keys:['beef','говядина'], score:3, name:{en:'Beef',ru:'Говядина'}, label:{en:'protein',ru:'белок'}, msg:{en:'Good iron source. Choose lean cuts and limit to 2–3× per week.',ru:'Хороший источник железа. Постные куски, не чаще 2–3 раз в неделю.'} },
+  { keys:['pork','свинина'], score:2, name:{en:'Pork',ru:'Свинина'}, label:{en:'protein',ru:'белок'}, msg:{en:'Higher in saturated fat. Lean pork occasionally is okay, but not daily.',ru:'Больше насыщенного жира. Постная свинина иногда допустима, но не каждый день.'} },
+  { keys:['sausage','колбаса','hot dog','сосиска','salami','салями','бекон','bacon'], score:0, name:{en:'Processed meat',ru:'Переработанное мясо'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'WHO classifies processed meats as carcinogenic. High in sodium, preservatives and bad fats.',ru:'ВОЗ классифицирует переработанное мясо как канцерогенное. Много соли, консервантов и вредных жиров.'} },
+  // VEGETABLES
+  { keys:['broccoli','брокколи'], score:5, name:{en:'Broccoli',ru:'Брокколи'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Anti-inflammatory powerhouse. Steamed broccoli contains sulforaphane — a gut healer.',ru:'Мощное противовоспалительное. На пару содержит сульфорафан — исцеляет кишечник.'} },
+  { keys:['spinach','шпинат'], score:5, name:{en:'Spinach',ru:'Шпинат'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Iron and magnesium for energy and muscle relaxation. Great for evening meals.',ru:'Железо и магний для энергии и расслабления мышц. Отлично вечером.'} },
+  { keys:['cucumber','огурец'], score:5, name:{en:'Cucumber',ru:'Огурец'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'96% water — excellent for hydration and reducing bloating.',ru:'96% воды — отлично для гидратации и уменьшения отёков.'} },
+  { keys:['tomato','помидор','черри'], score:5, name:{en:'Tomato',ru:'Помидор'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Rich in lycopene (especially cooked) — anti-inflammatory and heart-protective.',ru:'Богат ликопином (особенно варёный) — противовоспалительный, защищает сердце.'} },
+  { keys:['carrot','морковь'], score:5, name:{en:'Carrot',ru:'Морковь'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Beta-carotene for skin and immunity. Cooked carrots are easier to digest.',ru:'Бета-каротин для кожи и иммунитета. Варёная легче усваивается.'} },
+  { keys:['zucchini','кабачок'], score:5, name:{en:'Zucchini',ru:'Кабачок'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Low-calorie, anti-inflammatory, very gentle on digestion.',ru:'Мало калорий, противовоспалительный, очень мягкий для пищеварения.'} },
+  { keys:['bell pepper','перец болгарский','sweet pepper'], score:5, name:{en:'Bell pepper',ru:'Болгарский перец'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'More vitamin C than oranges — boosts collagen and immunity.',ru:'Больше витамина C, чем в апельсине — стимулирует коллаген и иммунитет.'} },
+  { keys:['cauliflower','цветная капуста'], score:5, name:{en:'Cauliflower',ru:'Цветная капуста'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Rich in choline for brain health. Steam for best digestion.',ru:'Много холина для мозга. Лучше на пару для пищеварения.'} },
+  { keys:['cabbage','капуста'], score:4, name:{en:'Cabbage',ru:'Капуста'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Fermented (sauerkraut) is a natural probiotic. Raw cabbage can bloat — cook it.',ru:'Квашеная — натуральный пробиотик. Сырая может вздувать — лучше тушить.'} },
+  { keys:['arugula','руккола'], score:5, name:{en:'Arugula',ru:'Руккола'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Nitrates improve blood flow and energy levels.',ru:'Нитраты улучшают кровоток и уровень энергии.'} },
+  { keys:['asparagus','спаржа'], score:5, name:{en:'Asparagus',ru:'Спаржа'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Natural diuretic — reduces water retention. Rich in folate.',ru:'Природный диуретик — убирает отёки. Богата фолиевой кислотой.'} },
+  { keys:['beet','свёкла'], score:4, name:{en:'Beet',ru:'Свёкла'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Natural nitrates boost blood flow and stamina.',ru:'Природные нитраты улучшают кровоток и выносливость.'} },
+  { keys:['sweet potato','батат'], score:4, name:{en:'Sweet potato',ru:'Батат'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'Feeds beneficial gut bacteria and rich in beta-carotene.',ru:'Питает полезные бактерии кишечника и богат бета-каротином.'} },
+  { keys:['lentil','lentils','чечевица'], score:5, name:{en:'Lentils',ru:'Чечевица'}, label:{en:'legume protein',ru:'бобовый белок'}, msg:{en:'Plant protein with iron and fiber — stabilises blood sugar all afternoon.',ru:'Растительный белок с железом и клетчаткой — стабилизирует сахар надолго.'} },
+  { keys:['chickpea','нут'], score:4, name:{en:'Chickpeas',ru:'Нут'}, label:{en:'legume',ru:'бобовые'}, msg:{en:'Great plant protein. Soak and cook well to avoid gas.',ru:'Отличный растительный белок. Хорошо замачивайте во избежание газообразования.'} },
+  { keys:['green beans','стручковая фасоль'], score:5, name:{en:'Green beans',ru:'Стручковая фасоль'}, label:{en:'vegetable',ru:'овощи'}, msg:{en:'Gentle fiber — great for bowel regularity.',ru:'Мягкая клетчатка — отлично для регулярного стула.'} },
+  // GRAINS
+  { keys:['buckwheat','гречка'], score:5, name:{en:'Buckwheat',ru:'Гречка'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'Complete protein + magnesium. Gently stimulates bowel movement.',ru:'Полноценный белок + магний. Мягко стимулирует кишечник.'} },
+  { keys:['quinoa','киноа'], score:5, name:{en:'Quinoa',ru:'Киноа'}, label:{en:'complete protein carb',ru:'полноценный белок + углевод'}, msg:{en:'Contains all 9 essential amino acids — rare for a grain.',ru:'Все 9 незаменимых аминокислот — редкость для злака.'} },
+  { keys:['oat','oats','oatmeal','овсянка','овёс'], score:5, name:{en:'Oats',ru:'Овсянка'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'Beta-glucan feeds good gut bacteria and lowers cholesterol.',ru:'Бета-глюкан питает полезные бактерии и снижает холестерин.'} },
+  { keys:['bulgur','булгур'], score:4, name:{en:'Bulgur',ru:'Булгур'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'Whole grain, high in fiber. Good rice alternative.',ru:'Цельное зерно с высоким содержанием клетчатки. Хорошая альтернатива рису.'} },
+  { keys:['brown rice','бурый рис'], score:4, name:{en:'Brown rice',ru:'Бурый рис'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'More fiber and magnesium than white rice, slower glucose release.',ru:'Больше клетчатки и магния, чем в белом рисе, медленнее поднимает сахар.'} },
+  { keys:['white rice','белый рис','рис'], score:3, name:{en:'White rice',ru:'Белый рис'}, label:{en:'refined carb',ru:'рафинированный углевод'}, msg:{en:'Okay occasionally. Prefer buckwheat, quinoa, or brown rice for more nutrients.',ru:'Иногда можно. Предпочтите гречку, киноа или бурый рис — больше пользы.'} },
+  { keys:['rye bread','ржаной хлеб'], score:4, name:{en:'Rye bread',ru:'Ржаной хлеб'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'Slower glucose release than white bread. Good fiber source.',ru:'Медленнее поднимает сахар, чем белый хлеб. Хороший источник клетчатки.'} },
+  { keys:['crispbread','хлебец','хлебцы'], score:4, name:{en:'Crispbread',ru:'Хлебцы'}, label:{en:'complex carb',ru:'сложный углевод'}, msg:{en:'Light and fiber-rich — a great swap for regular bread.',ru:'Лёгкие и богатые клетчаткой — отличная замена хлебу.'} },
+  { keys:['white bread','белый хлеб','хлеб'], score:2, name:{en:'White bread',ru:'Белый хлеб'}, label:{en:'refined carb',ru:'рафинированный углевод'}, msg:{en:'Spikes blood sugar quickly. Swap for rye or sourdough.',ru:'Быстро поднимает сахар. Замените ржаным или хлебом на закваске.'} },
+  { keys:['pasta','макароны'], score:2, name:{en:'Pasta',ru:'Макароны'}, label:{en:'refined carb',ru:'рафинированный углевод'}, msg:{en:'Little nutrition per calorie. Choose wholegrain or reduce portions.',ru:'Мало пользы на калорию. Выбирайте цельнозерновые или уменьшайте порцию.'} },
+  // FRUITS
+  { keys:['apple','яблоко'], score:4, name:{en:'Apple',ru:'Яблоко'}, label:{en:'fruit',ru:'фрукт'}, msg:{en:'Pectin feeds good gut bacteria. Eat with skin for maximum fiber.',ru:'Пектин питает полезные бактерии. Ешьте с кожурой для максимума клетчатки.'} },
+  { keys:['pear','груша'], score:4, name:{en:'Pear',ru:'Груша'}, label:{en:'fruit',ru:'фрукт'}, msg:{en:'Sorbitol is a gentle natural laxative — good for bowel regularity.',ru:'Сорбитол — мягкое природное слабительное, хорошо для регулярности стула.'} },
+  { keys:['berries','berry','blueberry','strawberry','raspberry','ягоды','черника','клубника','малина','смородина'], score:5, name:{en:'Berries',ru:'Ягоды'}, label:{en:'fruit',ru:'фрукт'}, msg:{en:'Lowest sugar, highest antioxidants of all fruits. Best fruit choice.',ru:'Меньше всего сахара и больше антиоксидантов из всех фруктов. Лучший выбор.'} },
+  { keys:['banana','банан'], score:3, name:{en:'Banana',ru:'Банан'}, label:{en:'fruit',ru:'фрукт'}, msg:{en:'Good potassium and serotonin precursors. Higher sugar — best before exercise.',ru:'Калий и предшественники серотонина. Больше сахара — лучше до физической активности.'} },
+  { keys:['orange','апельсин','mandarin','tangerine','мандарин'], score:4, name:{en:'Citrus',ru:'Цитрус'}, label:{en:'fruit',ru:'фрукт'}, msg:{en:'Vitamin C boosts collagen and immunity. Eat whole — not as juice.',ru:'Витамин C для коллагена и иммунитета. Ешьте целиком, не в виде сока.'} },
+  { keys:['kiwi','киви'], score:5, name:{en:'Kiwi',ru:'Киви'}, label:{en:'fruit',ru:'фрукт'}, msg:{en:'Vitamin C + digestive enzymes + serotonin. Eating one before bed improves sleep.',ru:'Витамин C + пищеварительные ферменты + серотонин. Перед сном улучшает сон.'} },
+  { keys:['avocado','авокадо'], score:5, name:{en:'Avocado',ru:'Авокадо'}, label:{en:'healthy fat',ru:'полезный жир'}, msg:{en:'Monounsaturated fats reduce inflammation. Potassium reduces water retention.',ru:'Мононенасыщенные жиры снижают воспаление. Калий убирает отёки.'} },
+  { keys:['dried fruit','prune','чернослив','date','финик','raisin','изюм','dried apricot','курага'], score:2, name:{en:'Dried fruit',ru:'Сухофрукты'}, label:{en:'high sugar',ru:'много сахара'}, msg:{en:'Very concentrated sugar — treat like candy. Max 2–3 pieces per day.',ru:'Очень концентрированный сахар — как конфеты. Максимум 2–3 штуки в день.'} },
+  // FATS, NUTS, SEEDS
+  { keys:['olive oil','оливковое масло'], score:5, name:{en:'Olive oil',ru:'Оливковое масло'}, label:{en:'healthy fat',ru:'полезный жир'}, msg:{en:'The gold standard fat. Anti-inflammatory and heart-protective.',ru:'Золотой стандарт жиров. Противовоспалительное, защищает сердце.'} },
+  { keys:['almond','almonds','миндаль'], score:4, name:{en:'Almonds',ru:'Миндаль'}, label:{en:'nut',ru:'орех'}, msg:{en:'Soak overnight to remove phytic acid and maximise magnesium absorption.',ru:'Замачивайте на ночь — убирает фитиновую кислоту и улучшает усвоение магния.'} },
+  { keys:['walnut','walnuts','грецкий орех','грецкие орехи'], score:4, name:{en:'Walnuts',ru:'Грецкие орехи'}, label:{en:'nut',ru:'орех'}, msg:{en:'Highest omega-3 among nuts. Great for brain and reducing inflammation.',ru:'Больше всего омега-3 среди орехов. Хорошо для мозга и снижения воспаления.'} },
+  { keys:['chia','чиа'], score:5, name:{en:'Chia seeds',ru:'Семена чиа'}, label:{en:'seed',ru:'семена'}, msg:{en:'Omega-3, fiber, and protein in one. Expand in stomach — lasting fullness.',ru:'Омега-3, клетчатка и белок в одном. Разбухают в желудке — долгое насыщение.'} },
+  { keys:['pumpkin seed','тыквенные семечки'], score:4, name:{en:'Pumpkin seeds',ru:'Тыквенные семечки'}, label:{en:'seed',ru:'семена'}, msg:{en:'High in zinc for skin and immunity, also rich in magnesium.',ru:'Много цинка для кожи и иммунитета, богаты магнием.'} },
+  { keys:['butter','сливочное масло'], score:2, name:{en:'Butter',ru:'Сливочное масло'}, label:{en:'saturated fat',ru:'насыщенный жир'}, msg:{en:'Use sparingly. Olive oil is a healthier fat for cooking.',ru:'Используйте понемногу. Оливковое масло — более полезный жир.'} },
+  { keys:['cheese','сыр'], score:2, name:{en:'Cheese',ru:'Сыр'}, label:{en:'saturated fat',ru:'насыщенный жир'}, msg:{en:'High saturated fat and sodium. A small amount (30g) a few times a week is fine.',ru:'Много насыщенного жира и соли. Небольшое количество (30г) пару раз в неделю — нормально.'} },
+  // DRINKS
+  { keys:['water','вода'], score:5, name:{en:'Water',ru:'Вода'}, label:{en:'hydration',ru:'гидратация'}, msg:{en:'Essential for digestion, energy, skin and detox. Aim for 1.5–2L daily.',ru:'Необходима для пищеварения, энергии, кожи и детокса. Цель — 1.5–2л в день.'} },
+  { keys:['green tea','зелёный чай'], score:5, name:{en:'Green tea',ru:'Зелёный чай'}, label:{en:'antioxidant',ru:'антиоксидант'}, msg:{en:'EGCG antioxidants support fat metabolism and protect cells.',ru:'Антиоксиданты EGCG поддерживают жировой обмен и защищают клетки.'} },
+  { keys:['herbal tea','травяной чай','chamomile','ромашка'], score:5, name:{en:'Herbal tea',ru:'Травяной чай'}, label:{en:'calming',ru:'успокаивающий'}, msg:{en:'Chamomile relaxes intestinal muscles — counts toward your daily water goal.',ru:'Ромашка расслабляет кишечник — считается в ежедневный объём воды.'} },
+  { keys:['coffee','кофе'], score:3, name:{en:'Coffee',ru:'Кофе'}, label:{en:'stimulant',ru:'стимулятор'}, msg:{en:'Rich in antioxidants if black. Limit to 1–2 cups before noon to protect sleep.',ru:'Много антиоксидантов в чёрном. До 2 чашек до полудня, чтобы не нарушать сон.'} },
+  { keys:['juice','сок'], score:1, name:{en:'Juice',ru:'Сок'}, label:{en:'sugar drink',ru:'сладкий напиток'}, msg:{en:'Even fresh juice lacks fiber and spikes blood sugar fast. Eat the whole fruit instead.',ru:'Даже свежий сок без клетчатки быстро поднимает сахар. Лучше есть фрукт целиком.'} },
+  { keys:['soda','cola','кола','газировка','sprite','fanta','лимонад'], score:0, name:{en:'Soda',ru:'Газировка'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'Empty calories, blood sugar spike, promotes inflammation and fat storage.',ru:'Пустые калории, скачок сахара, воспаление и накопление жира.'} },
+  { keys:['alcohol','wine','beer','vodka','вино','пиво','водка','алкоголь'], score:0, name:{en:'Alcohol',ru:'Алкоголь'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'Disrupts sleep, raises cortisol, and leads to belly fat storage.',ru:'Нарушает сон, повышает кортизол и способствует накоплению жира на животе.'} },
+  // SWEETS & PROCESSED
+  { keys:['honey','мёд'], score:3, name:{en:'Honey',ru:'Мёд'}, label:{en:'natural sugar',ru:'натуральный сахар'}, msg:{en:'Better than sugar — has enzymes and antimicrobial properties. Use sparingly.',ru:'Лучше сахара — есть ферменты. Но всё равно понемногу.'} },
+  { keys:['dark chocolate','тёмный шоколад'], score:3, name:{en:'Dark chocolate 70%+',ru:'Тёмный шоколад 70%+'}, label:{en:'treat',ru:'лакомство'}, msg:{en:'Antioxidants and magnesium — 1–2 small pieces a day is actually beneficial.',ru:'Антиоксиданты и магний — 1–2 маленьких кусочка в день на самом деле полезно.'} },
+  { keys:['chocolate','шоколад','candy','конфеты','sweets','сладкое'], score:1, name:{en:'Candy/Sweets',ru:'Конфеты/Сладкое'}, label:{en:'sugar',ru:'сахар'}, msg:{en:'Sugar spikes insulin, causes energy crashes and feeds harmful gut bacteria.',ru:'Сахар вызывает скачок инсулина, энергетические провалы и питает вредные бактерии.'} },
+  { keys:['sugar','сахар'], score:0, name:{en:'Sugar',ru:'Сахар'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'Feeds harmful gut bacteria, causes inflammation and disrupts hormone balance.',ru:'Питает вредные бактерии, вызывает воспаление и нарушает гормональный баланс.'} },
+  { keys:['cake','tort','торт','pastry','выпечка','bun','булочка','cookie','печенье','пирог'], score:0, name:{en:'Pastry/Cake',ru:'Выпечка/Торт'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'Sugar + refined flour + saturated fat — triple hit. Save for very special occasions.',ru:'Сахар + белая мука + насыщенный жир — тройной удар. Только для особых случаев.'} },
+  { keys:['chips','чипсы','crisps'], score:0, name:{en:'Chips',ru:'Чипсы'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'Fried, high sodium, artificial flavors — causes bloating and water retention.',ru:'Жареные, много соли, искусственные ароматизаторы — вздутие и отёки.'} },
+  { keys:['fast food','фастфуд','burger','бургер','pizza','пицца'], score:0, name:{en:'Fast food',ru:'Фастфуд'}, label:{en:'avoid',ru:'избегать'}, msg:{en:'Processed oils, hidden sugars, excess sodium. Try to avoid for the full 5 weeks.',ru:'Обработанные масла, скрытый сахар, соль. Избегайте в течение 5 недель.'} },
+  { keys:['fried','жареное','жарила','жарил'], score:1, name:{en:'Fried food',ru:'Жареное'}, label:{en:'cooking method',ru:'способ готовки'}, msg:{en:'Frying creates acrylamide and trans fats. Same ingredients are far healthier grilled, steamed or baked.',ru:'Жарка создаёт акриламид и трансжиры. Те же продукты намного полезнее на гриле, пару или в духовке.'} },
+];
 
-  const typeColors = {
-    breakfast: { bg:'#fef9ee', border:'#f0d080' },
-    lunch:     { bg:'#f0f7ee', border:'#90c880' },
-    dinner:    { bg:'#f4f0fa', border:'#b090d0' },
-    snack:     { bg:'#fdf0f8', border:'#e0a0d0' },
-  };
-  const tc = typeColors[type] || typeColors.breakfast;
+// ─── Day Analysis Engine ──────────────────────────────────────────────────────
 
-  return createPortal(
-    <div style={{ position:'fixed', inset:0, zIndex:9999, background:'rgba(45,37,24,0.55)', display:'flex', alignItems:'flex-end' }}
-      onClick={e => e.target === e.currentTarget && onClose()}>
-      <div style={{ background:'#fdfaf7', borderRadius:'24px 24px 0 0', width:'100%', maxHeight:'88vh', overflowY:'auto', animation:'slideUp 0.28s ease' }}>
-        <style>{`@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}`}</style>
+function analyzeDay(meals, L) {
+  const allItems = [
+    ...meals.breakfast.map(f => ({ ...f, slot:'breakfast' })),
+    ...meals.snack.map(f => ({ ...f, slot:'snack' })),
+    ...meals.lunch.map(f => ({ ...f, slot:'lunch' })),
+    ...meals.dinner.map(f => ({ ...f, slot:'dinner' })),
+  ];
+  if (allItems.length === 0) return null;
 
-        {/* Header */}
-        <div style={{ padding:'20px 20px 14px', background:tc.bg, borderBottom:`1px solid ${tc.border}`, borderRadius:'24px 24px 0 0', position:'sticky', top:0 }}>
-          <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-            <div style={{ display:'flex', alignItems:'center', gap:'12px' }}>
-              <span style={{ fontSize:'28px' }}>{meal.emoji}</span>
-              <div>
-                <p style={{ fontFamily:"'Lora',serif", fontSize:'17px', fontWeight:500, color:'#2d2518' }}>{meal.name[L]}</p>
-                <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', color:'#9a8870' }}>
-                  {meal.calories} kcal · {meal.protein}g {L==='en'?'protein':'белка'} · {meal.carbs}g {L==='en'?'carbs':'углев.'} · {meal.fat}g {L==='en'?'fat':'жиров'}
-                </p>
-              </div>
+  const matched = [], unmatched = [];
+  const seenFoodIds = new Set();
+
+  for (const item of allItems) {
+    const text = item.text.toLowerCase();
+    let best = null;
+    for (const food of FOOD_DB) {
+      for (const key of food.keys) {
+        if (text.includes(key.toLowerCase())) {
+          if (!best || food.score < best.score) best = food; // take worst match (conservative)
+          break;
+        }
+      }
+    }
+    if (best) { matched.push({ item, food: best }); seenFoodIds.add(best.name.en); }
+    else unmatched.push(item);
+  }
+
+  const great  = matched.filter(m => m.food.score >= 4);
+  const watch  = matched.filter(m => m.food.score >= 2 && m.food.score <= 3);
+  const avoid  = matched.filter(m => m.food.score <= 1);
+
+  const avgScore = matched.length ? matched.reduce((s,m) => s + m.food.score, 0) / matched.length : 0;
+  const dayScore = Math.round((avgScore / 5) * 10);
+
+  // Detect patterns for insight
+  const hasProtein = matched.some(m => ['lean_protein','omega3_protein','complete_protein','protein','probiotic','legume_protein'].some(g => m.food.label.en.includes('protein') || m.food.label.en.includes('probiotic')));
+  const hasVeg     = matched.some(m => m.food.label.en === 'vegetable');
+  const hasFried   = matched.some(m => m.food.keys.some(k => ['fried','жареное'].includes(k)));
+  const hasAlcohol = matched.some(m => m.food.name.en === 'Alcohol');
+  const hasSoda    = matched.some(m => m.food.name.en === 'Soda');
+
+  let insight = { en:'', ru:'' };
+  if (hasAlcohol) {
+    insight = { en:'Alcohol disrupts deep sleep and raises cortisol — even one drink can affect fat loss for up to 3 days.',ru:'Алкоголь нарушает глубокий сон и повышает кортизол — даже один бокал влияет на сжигание жира до 3 дней.' };
+  } else if (hasSoda) {
+    insight = { en:'Swap soda for sparkling water with lemon — you get the bubbles without the sugar spike.',ru:'Замените газировку на минеральную воду с лимоном — те же пузырьки без скачка сахара.' };
+  } else if (hasFried) {
+    insight = { en:'Next time try baking or grilling instead of frying — same flavours, far fewer harmful compounds.',ru:'В следующий раз попробуйте запечь или приготовить на гриле вместо жарки — те же вкусы, намного меньше вредных веществ.' };
+  } else if (!hasVeg) {
+    insight = { en:'No vegetables today — try adding just one handful to your next meal. Even frozen counts!',ru:'Сегодня без овощей — попробуйте добавить хотя бы горсть к следующему приёму пищи. Даже замороженные считаются!' };
+  } else if (!hasProtein) {
+    insight = { en:'Add a protein source (eggs, fish, chicken, or lentils) at each meal to stay full and protect muscle.',ru:'Добавьте белок (яйца, рыба, курица или чечевица) к каждому приёму пищи — насыщает и защищает мышцы.' };
+  } else if (dayScore >= 8) {
+    insight = { en:'Exceptional day! Your gut bacteria are thriving on these choices. Keep this momentum.',ru:'Исключительный день! Ваши кишечные бактерии процветают от таких выборов. Держите этот импульс.' };
+  } else if (dayScore >= 6) {
+    insight = { en:'Good day overall! A few small swaps tomorrow and you\'ll be in excellent shape.',ru:'В целом хороший день! Несколько небольших замен завтра — и будет отлично.' };
+  } else {
+    insight = { en:'Every meal is a fresh start. Tomorrow, try swapping one processed item for a whole food.',ru:'Каждый приём пищи — это свежий старт. Завтра попробуйте заменить один переработанный продукт на цельный.' };
+  }
+
+  return { great, watch, avoid, unmatched, dayScore, insight };
+}
+
+// ─── Sub-tab: Food Journal (Today) ───────────────────────────────────────────
+
+function TodayMeals({ lang:L, profile }) {
+  const today = todayKey();
+  const [meals, setMeals] = useState(() => {
+    try { const s = SS.get(`dba_journal_${today}`); return s ? JSON.parse(s) : { breakfast:[], snack:[], lunch:[], dinner:[] }; }
+    catch { return { breakfast:[], snack:[], lunch:[], dinner:[] }; }
+  });
+  const [inputs, setInputs] = useState({ breakfast:'', snack:'', lunch:'', dinner:'' });
+  const [water, setWater] = useState(() => SS.get(`dba_water_${today}`) || null);
+
+  const analysis = analyzeDay(meals, L);
+
+  const SLOTS = [
+    { key:'breakfast', icon:'🌅', label:{en:'Breakfast',ru:'Завтрак'},   time:'7:00–9:00',   bg:'#fef9ee', border:'#f0d080' },
+    { key:'snack',     icon:'🍎', label:{en:'Snack',ru:'Перекус'},       time:'10:30–11:00', bg:'#fdf0f8', border:'#e0a0d0' },
+    { key:'lunch',     icon:'🥗', label:{en:'Lunch',ru:'Обед'},          time:'12:30–14:00', bg:'#f0f7ee', border:'#90c880' },
+    { key:'dinner',    icon:'🌙', label:{en:'Dinner',ru:'Ужин'},         time:'18:30–20:00', bg:'#f4f0fa', border:'#b090d0' },
+  ];
+
+  function addFood(slot) {
+    const text = inputs[slot].trim();
+    if (!text) return;
+    const next = { ...meals, [slot]: [...meals[slot], { id: Date.now(), text }] };
+    setMeals(next);
+    SS.set(`dba_journal_${today}`, JSON.stringify(next));
+    setInputs(p => ({ ...p, [slot]: '' }));
+  }
+
+  function removeFood(slot, id) {
+    const next = { ...meals, [slot]: meals[slot].filter(f => f.id !== id) };
+    setMeals(next);
+    SS.set(`dba_journal_${today}`, JSON.stringify(next));
+  }
+
+  function setWaterLevel(val) {
+    setWater(val);
+    SS.set(`dba_water_${today}`, val);
+  }
+
+  const totalLogged = Object.values(meals).flat().length;
+  const scoreColor = analysis
+    ? analysis.dayScore >= 8 ? '#5a8a4a' : analysis.dayScore >= 5 ? '#c4a030' : '#c05030'
+    : '#b0a090';
+
+  const scoreLabel = analysis
+    ? analysis.dayScore >= 8
+      ? { en:'Excellent day! 🌟', ru:'Отличный день! 🌟' }
+      : analysis.dayScore >= 6
+      ? { en:'Good job today 💛', ru:'Хороший день 💛' }
+      : analysis.dayScore >= 4
+      ? { en:'Getting there 🌱', ru:'На верном пути 🌱' }
+      : { en:'Room to grow 💙', ru:'Есть куда расти 💙' }
+    : null;
+
+  return (
+    <div style={{ display:'flex', flexDirection:'column', gap:'12px' }}>
+
+      {/* Date header */}
+      <div style={{ textAlign:'center' }}>
+        <p style={{ fontFamily:"'Lora',serif", fontSize:'17px', color:'#2d2518', fontWeight:500 }}>
+          {new Date().toLocaleDateString(L==='ru'?'ru-RU':'en-GB', { weekday:'long', day:'numeric', month:'long' })}
+        </p>
+        <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', color:'#9a8870', marginTop:'2px' }}>
+          {L==='en' ? 'Log what you ate — get honest feedback' : 'Запишите, что ели — получите честную обратную связь'}
+        </p>
+      </div>
+
+      {/* Meal input sections */}
+      {SLOTS.map(slot => (
+        <div key={slot.key} style={{ background:slot.bg, border:`1px solid ${slot.border}`, borderRadius:'14px', padding:'12px 14px' }}>
+          <div style={{ display:'flex', alignItems:'center', gap:'8px', marginBottom:'10px' }}>
+            <span style={{ fontSize:'16px' }}>{slot.icon}</span>
+            <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', fontWeight:600, color:'#4a3825', textTransform:'uppercase', letterSpacing:'0.05em', flex:1 }}>
+              {slot.label[L]}
+            </p>
+            <span style={{ fontFamily:"'Inter',sans-serif", fontSize:'10px', color:'#b0a090' }}>{slot.time}</span>
+          </div>
+
+          {/* Food chips */}
+          {meals[slot.key].length > 0 && (
+            <div style={{ display:'flex', flexWrap:'wrap', gap:'6px', marginBottom:'8px' }}>
+              {meals[slot.key].map(f => {
+                const text = f.text.toLowerCase();
+                let chipScore = null;
+                for (const food of FOOD_DB) {
+                  if (food.keys.some(k => text.includes(k.toLowerCase()))) { chipScore = food.score; break; }
+                }
+                const chipColor = chipScore === null ? '#9a8870' : chipScore >= 4 ? '#5a8a4a' : chipScore >= 2 ? '#b08030' : '#c05030';
+                return (
+                  <div key={f.id} style={{ display:'flex', alignItems:'center', gap:'4px', background:'rgba(255,255,255,0.75)', border:`1px solid ${slot.border}`, borderRadius:'20px', padding:'4px 10px 4px 8px' }}>
+                    <span style={{ width:'6px', height:'6px', borderRadius:'50%', background:chipColor, flexShrink:0 }} />
+                    <span style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', color:'#3a2e22' }}>{f.text}</span>
+                    <button onClick={() => removeFood(slot.key, f.id)} style={{ background:'none', border:'none', color:'#b0a090', cursor:'pointer', padding:'0 0 0 2px', fontSize:'13px', lineHeight:1 }}>×</button>
+                  </div>
+                );
+              })}
             </div>
-            <button onClick={onClose} style={{ background:'none', border:'none', fontSize:'22px', cursor:'pointer', color:'#9a8870', padding:'4px' }}>✕</button>
+          )}
+
+          {/* Input row */}
+          <div style={{ display:'flex', gap:'6px' }}>
+            <input
+              type="text"
+              value={inputs[slot.key]}
+              onChange={e => setInputs(p => ({ ...p, [slot.key]: e.target.value }))}
+              onKeyDown={e => e.key === 'Enter' && addFood(slot.key)}
+              placeholder={L==='en' ? 'Type a food and press Enter…' : 'Введите продукт и нажмите Enter…'}
+              style={{ flex:1, padding:'8px 12px', borderRadius:'10px', border:'1px solid rgba(0,0,0,0.1)', fontFamily:"'Inter',sans-serif", fontSize:'13px', color:'#2d2518', background:'rgba(255,255,255,0.8)', outline:'none' }}
+            />
+            <button onClick={() => addFood(slot.key)}
+              style={{ padding:'8px 14px', borderRadius:'10px', background:'#8b7355', color:'#fff', border:'none', fontFamily:"'Inter',sans-serif", fontSize:'13px', cursor:'pointer', flexShrink:0 }}>
+              +
+            </button>
           </div>
         </div>
+      ))}
 
-        <div style={{ padding:'20px', display:'flex', flexDirection:'column', gap:'16px' }}>
+      {/* Water tracker */}
+      <div style={{ background:'#eaf5fb', border:'1px solid #aad4ee', borderRadius:'14px', padding:'12px 14px' }}>
+        <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', fontWeight:600, color:'#3a6a8a', marginBottom:'10px' }}>
+          💧 {L==='en' ? 'Did you drink 1.5–2L of water today?' : 'Выпили 1.5–2л воды сегодня?'}
+        </p>
+        <div style={{ display:'flex', gap:'8px' }}>
+          {[
+            { val:'yes',    en:'Yes! ✓',      ru:'Да! ✓' },
+            { val:'mostly', en:'Mostly',      ru:'В основном' },
+            { val:'no',     en:'Not really',  ru:'Не очень' },
+          ].map(opt => (
+            <button key={opt.val} onClick={() => setWaterLevel(opt.val)}
+              style={{ flex:1, padding:'8px 4px', borderRadius:'10px', border:`1.5px solid ${water===opt.val?'#4a8aaa':'#aad4ee'}`, background:water===opt.val?'#4a8aaa':'rgba(255,255,255,0.7)', color:water===opt.val?'#fff':'#3a6a8a', fontFamily:"'Inter',sans-serif", fontSize:'12px', cursor:'pointer', fontWeight:water===opt.val?600:400 }}>
+              {opt[L]}
+            </button>
+          ))}
+        </div>
+        {water === 'no' && (
+          <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', color:'#3a6a8a', marginTop:'8px', lineHeight:1.5 }}>
+            {L==='en' ? '💡 Dehydration is often mistaken for hunger. Try a glass of water before your next snack.' : '💡 Обезвоживание часто путают с голодом. Попробуйте стакан воды перед следующим перекусом.'}
+          </p>
+        )}
+      </div>
 
-          {/* Why good for you */}
-          <div style={{ background:'#f0f8f0', border:'1px solid #c0d8c0', borderRadius:'12px', padding:'12px 14px' }}>
-            <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', fontWeight:600, color:'#5a8a4a', letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:'4px' }}>
-              🌿 {L==='en'?'Why this is good for you':'Почему это полезно'}
+      {/* Analysis */}
+      {totalLogged === 0 ? (
+        <div style={{ background:'#f5f0eb', borderRadius:'14px', padding:'20px', textAlign:'center' }}>
+          <p style={{ fontSize:'32px', marginBottom:'8px' }}>📝</p>
+          <p style={{ fontFamily:"'Lora',serif", fontSize:'15px', color:'#5a4535', marginBottom:'4px' }}>
+            {L==='en' ? 'Start logging your meals' : 'Начните вносить приёмы пищи'}
+          </p>
+          <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', color:'#9a8870', lineHeight:1.6 }}>
+            {L==='en' ? 'Type any food above — we\'ll analyse it and show you what\'s helping and what\'s not.' : 'Введите любой продукт выше — мы проанализируем и покажем, что помогает, а что нет.'}
+          </p>
+        </div>
+      ) : analysis ? (
+        <div style={{ display:'flex', flexDirection:'column', gap:'10px' }}>
+
+          {/* Score card */}
+          <div style={{ background:'linear-gradient(135deg,#fdf5ec,#f5f0e8)', border:'1px solid #e0c8a8', borderRadius:'16px', padding:'16px' }}>
+            <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'10px' }}>
+              <p style={{ fontFamily:"'Lora',serif", fontSize:'16px', color:'#2d2518', fontWeight:500 }}>
+                {L==='en' ? 'Today\'s score' : 'Оценка дня'}
+              </p>
+              <p style={{ fontFamily:"'Lora',serif", fontSize:'24px', color:scoreColor, fontWeight:500 }}>
+                {analysis.dayScore}<span style={{ fontSize:'14px', color:'#9a8870' }}>/10</span>
+              </p>
+            </div>
+            <div style={{ height:'8px', borderRadius:'4px', background:'#ede8e2', overflow:'hidden', marginBottom:'8px' }}>
+              <div style={{ height:'100%', width:`${analysis.dayScore*10}%`, background:scoreColor, borderRadius:'4px', transition:'width 0.6s ease' }} />
+            </div>
+            <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'13px', color:scoreColor, fontWeight:500 }}>
+              {scoreLabel[L]}
             </p>
-            <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'13px', color:'#3a2e22', lineHeight:1.6 }}>{meal.note[L]}</p>
           </div>
 
-          {/* Ingredients */}
-          <div>
-            <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', fontWeight:600, color:'#8b7355', letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:'10px' }}>
-              🧂 {L==='en'?'Ingredients':'Ингредиенты'}
-            </p>
-            {meal.ingredients[L].map((item,i) => (
-              <div key={i} style={{ display:'flex', alignItems:'flex-start', gap:'10px', marginBottom:'8px' }}>
-                <span style={{ width:'6px', height:'6px', borderRadius:'50%', background:'#c4a882', flexShrink:0, marginTop:'6px' }} />
-                <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'13px', color:'#3a2e22', lineHeight:1.5 }}>{item}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Preparation */}
-          <div>
-            <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', fontWeight:600, color:'#8b7355', letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:'10px' }}>
-              👩‍🍳 {L==='en'?'How to prepare':'Как приготовить'}
-            </p>
-            {meal.prep[L].map((step,i) => (
-              <div key={i} style={{ display:'flex', gap:'12px', marginBottom:'10px' }}>
-                <span style={{ width:'22px', height:'22px', borderRadius:'50%', background:'#8b7355', color:'#fff', fontFamily:"'Inter',sans-serif", fontSize:'12px', fontWeight:600, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>{i+1}</span>
-                <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'13px', color:'#3a2e22', lineHeight:1.6, paddingTop:'2px' }}>{step}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Swap options */}
-          {alts.length > 0 && (
-            <div>
-              <button onClick={() => setShowSwap(!showSwap)} style={{ width:'100%', padding:'11px', borderRadius:'12px', border:'1.5px solid #ede8e2', background:showSwap?'#f5f0eb':'#fff', fontFamily:"'Inter',sans-serif", fontSize:'13px', color:'#8b7355', cursor:'pointer' }}>
-                🔄 {L==='en'?`Swap this ${type}`:`Заменить ${type==='breakfast'?'завтрак':type==='lunch'?'обед':type==='dinner'?'ужин':'перекус'}`}
-                {showSwap ? ' ▲' : ' ▼'}
-              </button>
-              {showSwap && (
-                <div style={{ marginTop:'10px', display:'flex', flexDirection:'column', gap:'8px' }}>
-                  {alts.map(alt => (
-                    <button key={alt.id} onClick={() => { onSwap(alt.id); onClose(); }}
-                      style={{ display:'flex', alignItems:'center', gap:'12px', padding:'12px 14px', borderRadius:'12px', border:'1px solid #ede8e2', background:'#fff', cursor:'pointer', textAlign:'left' }}>
-                      <span style={{ fontSize:'22px' }}>{alt.emoji}</span>
-                      <div>
-                        <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'13px', fontWeight:500, color:'#2d2518' }}>{alt.name[L]}</p>
-                        <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', color:'#9a8870' }}>{alt.calories} kcal · {alt.protein}g {L==='en'?'protein':'белка'}</p>
-                      </div>
-                    </button>
-                  ))}
+          {/* Great choices */}
+          {analysis.great.length > 0 && (
+            <div style={{ background:'#f0f8f0', border:'1px solid #b0d8b0', borderRadius:'14px', padding:'14px' }}>
+              <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', fontWeight:700, color:'#3a6a3a', letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:'10px' }}>
+                ✅ {L==='en' ? 'What you did right' : 'Что вы сделали правильно'}
+              </p>
+              {analysis.great.map((m,i) => (
+                <div key={i} style={{ marginBottom:'8px', paddingBottom:'8px', borderBottom:i<analysis.great.length-1?'1px solid #d0e8d0':'none' }}>
+                  <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'13px', fontWeight:500, color:'#2d2518', marginBottom:'2px' }}>
+                    {m.food.name[L]} <span style={{ fontSize:'11px', color:'#6a9a6a', fontWeight:400 }}>· {m.item.text}</span>
+                  </p>
+                  <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', color:'#3a5a3a', lineHeight:1.5 }}>{m.food.msg[L]}</p>
                 </div>
-              )}
+              ))}
+            </div>
+          )}
+
+          {/* Watch */}
+          {analysis.watch.length > 0 && (
+            <div style={{ background:'#fefaf0', border:'1px solid #e0c870', borderRadius:'14px', padding:'14px' }}>
+              <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', fontWeight:700, color:'#8a6a20', letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:'10px' }}>
+                ⚠️ {L==='en' ? 'Watch this' : 'Обратите внимание'}
+              </p>
+              {analysis.watch.map((m,i) => (
+                <div key={i} style={{ marginBottom:'8px', paddingBottom:'8px', borderBottom:i<analysis.watch.length-1?'1px solid #e8d880':'none' }}>
+                  <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'13px', fontWeight:500, color:'#2d2518', marginBottom:'2px' }}>
+                    {m.food.name[L]} <span style={{ fontSize:'11px', color:'#9a7a30', fontWeight:400 }}>· {m.item.text}</span>
+                  </p>
+                  <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', color:'#6a5020', lineHeight:1.5 }}>{m.food.msg[L]}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Avoid */}
+          {analysis.avoid.length > 0 && (
+            <div style={{ background:'#fef0f0', border:'1px solid #e0a0a0', borderRadius:'14px', padding:'14px' }}>
+              <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', fontWeight:700, color:'#8a3030', letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:'10px' }}>
+                ❌ {L==='en' ? 'Think twice next time' : 'В следующий раз подумайте'}
+              </p>
+              {analysis.avoid.map((m,i) => (
+                <div key={i} style={{ marginBottom:'8px', paddingBottom:'8px', borderBottom:i<analysis.avoid.length-1?'1px solid #e8b0b0':'none' }}>
+                  <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'13px', fontWeight:500, color:'#2d2518', marginBottom:'2px' }}>
+                    {m.food.name[L]} <span style={{ fontSize:'11px', color:'#9a5050', fontWeight:400 }}>· {m.item.text}</span>
+                  </p>
+                  <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', color:'#6a2020', lineHeight:1.5 }}>{m.food.msg[L]}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Unrecognized */}
+          {analysis.unmatched.length > 0 && (
+            <div style={{ background:'#f8f5f0', border:'1px solid #d8ccc0', borderRadius:'14px', padding:'14px' }}>
+              <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', fontWeight:700, color:'#7a6a5a', letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:'6px' }}>
+                ❓ {L==='en' ? 'Not in our database yet' : 'Нет в нашей базе пока'}
+              </p>
+              <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', color:'#8a7a6a', lineHeight:1.5 }}>
+                {analysis.unmatched.map(f => f.text).join(', ')} — {L==='en' ? 'track mindfully.' : 'отслеживайте осознанно.'}
+              </p>
+            </div>
+          )}
+
+          {/* Key insight */}
+          {analysis.insight.en && (
+            <div style={{ background:'#f4f0fa', border:'1px solid #c0a8e0', borderRadius:'14px', padding:'14px' }}>
+              <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', fontWeight:700, color:'#6a4a9a', letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:'6px' }}>
+                💡 {L==='en' ? 'Today\'s insight' : 'Инсайт дня'}
+              </p>
+              <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'13px', color:'#3a2a5a', lineHeight:1.6 }}>{analysis.insight[L]}</p>
+            </div>
+          )}
+
+          {/* All good banner */}
+          {analysis.avoid.length === 0 && analysis.watch.length === 0 && analysis.great.length > 0 && (
+            <div style={{ background:'linear-gradient(135deg,#f0faf0,#e8f5e8)', border:'1px solid #90c890', borderRadius:'12px', padding:'12px 14px', textAlign:'center' }}>
+              <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'13px', color:'#3a6a3a' }}>
+                🌿 {L==='en' ? 'Clean sweep! Only nourishing choices today.' : 'Чисто! Только питательные выборы сегодня.'}
+              </p>
             </div>
           )}
         </div>
-      </div>
-    </div>,
-    document.body
+      ) : null}
+    </div>
   );
 }
+
 
 // ─── Sub-tab: My Plan ─────────────────────────────────────────────────────────
 
@@ -400,166 +603,6 @@ function MyPlan({ lang:L }) {
   );
 }
 
-// ─── Sub-tab: Today's Meals ───────────────────────────────────────────────────
-
-function TodayMeals({ lang:L, profile, setProfile }) {
-  const dayOfWeek = new Date().getDay();
-  const [plan, setPlan] = useState(() => {
-    try { const s = SS.get(`dba_plan_${todayKey()}`); return s ? JSON.parse(s) : WEEK_ROTATION[dayOfWeek]; }
-    catch { return WEEK_ROTATION[dayOfWeek]; }
-  });
-  const [expandedMeal, setExpandedMeal] = useState(null);
-  const [logged, setLogged] = useState(() => {
-    try { const s = SS.get(`dba_logged_${todayKey()}`); return s ? JSON.parse(s) : {}; }
-    catch { return {}; }
-  });
-  const [editingProfile, setEditingProfile] = useState(false);
-  const [form, setForm] = useState({ weight: String(profile.weight), height: String(profile.height), age: String(profile.age), activityLevel: profile.activityLevel });
-
-  const tdee = calcTDEE(profile);
-  const targetCal = Math.max(1380, Math.round(tdee * 0.88));
-
-  const mealConfigs = [
-    { key:'b', type:'breakfast', label:L==='en'?'Breakfast':'Завтрак',        time:'7:00–8:00',  colors:{ bg:'#fef9ee', border:'#f0d080' } },
-    { key:'s', type:'snack',     label:L==='en'?'Snack':'Перекус',            time:'10:30–11:00',colors:{ bg:'#fdf0f8', border:'#e0a0d0' } },
-    { key:'l', type:'lunch',     label:L==='en'?'Lunch':'Обед',               time:'12:30–13:30',colors:{ bg:'#f0f7ee', border:'#90c880' } },
-    { key:'d', type:'dinner',    label:L==='en'?'Dinner':'Ужин',              time:'18:30–19:30',colors:{ bg:'#f4f0fa', border:'#b090d0' } },
-  ];
-
-  const totalCal = mealConfigs.reduce((sum, mc) => {
-    const m = getMeal(mc.type, plan[mc.key]);
-    return sum + (m?.calories || 0);
-  }, 0);
-
-  function logMeal(key) {
-    const next = { ...logged, [key]: true };
-    setLogged(next);
-    SS.set(`dba_logged_${todayKey()}`, JSON.stringify(next));
-  }
-
-  function swapMeal(type, key, newId) {
-    const next = { ...plan, [key]: newId };
-    setPlan(next);
-    SS.set(`dba_plan_${todayKey()}`, JSON.stringify(next));
-  }
-
-  function saveProfile() {
-    const p = { weight: parseFloat(form.weight)||65, height: parseFloat(form.height)||167, age: parseInt(form.age)||44, activityLevel: form.activityLevel };
-    setProfile(p);
-    SS.set('dba_nutrition_profile', JSON.stringify(p));
-    setEditingProfile(false);
-  }
-
-  return (
-    <div style={{ display:'flex', flexDirection:'column', gap:'12px' }}>
-
-      {/* Profile bar */}
-      <div style={{ background:'#fff', border:'1px solid #ede8e2', borderRadius:'14px', padding:'12px 16px' }}>
-        {editingProfile ? (
-          <div style={{ display:'flex', flexDirection:'column', gap:'10px' }}>
-            <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', fontWeight:600, color:'#8b7355' }}>Update your stats</p>
-            <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:'8px' }}>
-              {[{k:'weight',l:'Weight (kg)'},{k:'height',l:'Height (cm)'},{k:'age',l:'Age'}].map(({k,l}) => (
-                <div key={k}>
-                  <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'10px', color:'#9a8870', marginBottom:'4px' }}>{l}</p>
-                  <input type="number" value={form[k]} onChange={e => setForm({...form,[k]:e.target.value})}
-                    style={{ width:'100%', padding:'8px', borderRadius:'8px', border:'1px solid #ede8e2', fontFamily:"'Inter',sans-serif", fontSize:'14px', color:'#2d2518', boxSizing:'border-box', textAlign:'center' }} />
-                </div>
-              ))}
-            </div>
-            <div style={{ display:'flex', gap:'8px' }}>
-              {['sedentary','light','moderate','active'].map(a => (
-                <button key={a} onClick={() => setForm({...form, activityLevel:a})}
-                  style={{ flex:1, padding:'6px', borderRadius:'8px', border:`1px solid ${form.activityLevel===a?'#8b7355':'#ede8e2'}`, background:form.activityLevel===a?'#8b7355':'#fff', color:form.activityLevel===a?'#fff':'#8b7355', fontFamily:"'Inter',sans-serif", fontSize:'10px', cursor:'pointer' }}>
-                  {a}
-                </button>
-              ))}
-            </div>
-            <div style={{ display:'flex', gap:'8px' }}>
-              <button onClick={saveProfile} style={{ flex:1, padding:'10px', borderRadius:'10px', background:'#8b7355', color:'#fff', border:'none', fontFamily:"'Inter',sans-serif", fontSize:'13px', cursor:'pointer' }}>Save</button>
-              <button onClick={() => setEditingProfile(false)} style={{ padding:'10px 16px', borderRadius:'10px', background:'#fff', color:'#8b7355', border:'1px solid #ede8e2', fontFamily:"'Inter',sans-serif", fontSize:'13px', cursor:'pointer' }}>Cancel</button>
-            </div>
-          </div>
-        ) : (
-          <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-            <div>
-              <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', fontWeight:600, color:'#2d2518' }}>
-                {profile.weight}kg · {profile.height}cm · {profile.age}y · {profile.activityLevel}
-              </p>
-              <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', color:'#9a8870', marginTop:'2px' }}>
-                TDEE: {tdee} kcal · Target: {targetCal} kcal/day
-              </p>
-            </div>
-            <button onClick={() => setEditingProfile(true)} style={{ padding:'6px 12px', borderRadius:'10px', border:'1px solid #ede8e2', background:'#fdf9f5', color:'#8b7355', fontFamily:"'Inter',sans-serif", fontSize:'11px', cursor:'pointer' }}>Edit</button>
-          </div>
-        )}
-      </div>
-
-      {/* Calorie tracker */}
-      <div style={{ background:'#fff', border:'1px solid #ede8e2', borderRadius:'14px', padding:'12px 16px' }}>
-        <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'8px' }}>
-          <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'12px', fontWeight:500, color:'#4a3825' }}>
-            {L==='en'?"Today's calories":'Калории сегодня'}
-          </p>
-          <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'13px', color:totalCal <= targetCal ? '#5a8a4a' : '#c07030', fontWeight:600 }}>
-            {totalCal} / {targetCal} kcal
-          </p>
-        </div>
-        <div style={{ height:'6px', borderRadius:'3px', background:'#ede8e2', overflow:'hidden' }}>
-          <div style={{ height:'100%', width:`${Math.min(100, (totalCal/targetCal)*100)}%`, background:totalCal<=targetCal?'#7ab870':'#c07030', borderRadius:'3px', transition:'width 0.4s' }} />
-        </div>
-      </div>
-
-      {/* Meal cards */}
-      {mealConfigs.map(mc => {
-        const meal = getMeal(mc.type, plan[mc.key]);
-        if (!meal) return null;
-        const isLogged = !!logged[mc.key];
-        return (
-          <div key={mc.key} style={{ background:mc.colors.bg, border:`1px solid ${mc.colors.border}`, borderRadius:'14px', padding:'14px 16px' }}>
-            <div style={{ display:'flex', alignItems:'flex-start', gap:'12px' }}>
-              <span style={{ fontSize:'26px', lineHeight:1 }}>{meal.emoji}</span>
-              <div style={{ flex:1, minWidth:0 }}>
-                <div style={{ display:'flex', alignItems:'center', gap:'6px', marginBottom:'2px' }}>
-                  <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', fontWeight:600, color:'#8b7355', textTransform:'uppercase', letterSpacing:'0.06em' }}>{mc.label}</p>
-                  <span style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', color:'#b0a090' }}>· {mc.time}</span>
-                </div>
-                <p style={{ fontFamily:"'Lora',serif", fontSize:'15px', fontWeight:500, color:'#2d2518', marginBottom:'4px' }}>{meal.name[L]}</p>
-                <p style={{ fontFamily:"'Inter',sans-serif", fontSize:'11px', color:'#9a8870' }}>
-                  {meal.calories} kcal · {meal.protein}g {L==='en'?'protein':'белка'}
-                </p>
-              </div>
-              {isLogged && <span style={{ fontSize:'18px' }}>✅</span>}
-            </div>
-            <div style={{ display:'flex', gap:'8px', marginTop:'12px' }}>
-              <button onClick={() => setExpandedMeal({ type:mc.type, key:mc.key, mealId:plan[mc.key] })}
-                style={{ flex:1, padding:'9px', borderRadius:'10px', background:'#fff', border:`1px solid ${mc.colors.border}`, fontFamily:"'Inter',sans-serif", fontSize:'12px', color:'#5a4535', cursor:'pointer', fontWeight:500 }}>
-                {L==='en'?'Details 📖':'Детали 📖'}
-              </button>
-              {!isLogged && (
-                <button onClick={() => logMeal(mc.key)}
-                  style={{ padding:'9px 14px', borderRadius:'10px', background:'#8b7355', border:'none', fontFamily:"'Inter',sans-serif", fontSize:'12px', color:'#fff', cursor:'pointer' }}>
-                  {L==='en'?'Log ✓':'Отметить ✓'}
-                </button>
-              )}
-            </div>
-          </div>
-        );
-      })}
-
-      {/* Detail overlay */}
-      {expandedMeal && (
-        <MealDetail
-          type={expandedMeal.type}
-          mealId={expandedMeal.mealId}
-          lang={L}
-          onClose={() => setExpandedMeal(null)}
-          onSwap={newId => { swapMeal(expandedMeal.type, expandedMeal.key, newId); setExpandedMeal(null); }}
-        />
-      )}
-    </div>
-  );
-}
 
 // ─── Sub-tab: Progress ────────────────────────────────────────────────────────
 
@@ -737,7 +780,7 @@ export default function NutritionPlan({ lang = 'en' }) {
 
       {/* Sub-tab content */}
       {subTab === 'plan'     && <MyPlan lang={L} />}
-      {subTab === 'today'    && <TodayMeals lang={L} profile={profile} setProfile={setProfile} />}
+      {subTab === 'today'    && <TodayMeals lang={L} profile={profile} />}
       {subTab === 'progress' && <Progress lang={L} profile={profile} />}
     </div>
   );
